@@ -1,0 +1,125 @@
+/* 
+filename: style
+author: Chong Yi Yang
+created: 18/8/2024
+last modified: 25/8/2024
+description: css file for assignment 1
+*/
+
+/* Define font family and reset margin and padding */
+* {
+    
+    box-sizing: content-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    /* Set logo image size */
+    width: 200px;
+    height: auto;
+}
+
+header {
+    background-color: white;
+    border-bottom: 2px solid rgba(180, 180, 180, 0.5);
+    padding: 20px 40px;
+    display: flex;
+}
+
+.navbar {
+    /* Remove bullet points */
+    list-style: none;
+    /* Set unordered list to be a flex box */
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    /* Set height to fill header */
+    height: 100%;
+}
+
+.links {
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.2s;
+}
+
+.links:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.icons {
+    width: 48px;
+    height: auto;
+    padding: 0px 15px;
+}
+
+.iconsnav {
+    margin-left: auto;
+}
+
+/* Hero section */
+.hero {
+    /* Make position relative so that the before element can be positioned relative to this */
+    position: relative;
+    text-align: center;
+    padding: 75px 0px;
+}
+
+.hero::before {
+    content: "";
+    /* Position using the top and left properties and relative to the hero section */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Set width and height based on the hero section */
+    width: 100%;
+    height: 100%;
+    /* Define background images */
+    background-image: url("images/hero_background_ai.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 50%;
+    /* Darken the background image to make text visible */
+    filter: brightness(0.5);
+
+    /* Move background behind the hero text */
+    z-index: -1;
+
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    color: white;
+    margin: 0;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    color: rgb(221, 221, 221);
+}
+
+#shopbtn {
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 18px 48px;
+    text-decoration: none;
+    border: 0;
+    border-radius: 2rem;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+/* Features section */
+.features {
+    padding: 20px 50px;
+}
