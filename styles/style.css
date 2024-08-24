@@ -8,10 +8,12 @@ description: css file for assignment 1
 
 /* Define font family and reset margin and padding */
 * {
-    
-    box-sizing: content-box;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    padding: 0;
+}
+body {
+    overflow-x: hidden;
 }
 
 h1 {
@@ -40,6 +42,11 @@ header {
     border-bottom: 2px solid rgba(180, 180, 180, 0.5);
     padding: 20px 40px;
     display: flex;
+    /* Make the header nav bar stick even when scrolling */
+    position: sticky;
+    top: 0;
+    /* Push element to the front most */
+    z-index: 999;
 }
 
 .navbar {
@@ -69,7 +76,7 @@ header {
 .icons {
     width: 48px;
     height: auto;
-    padding: 0px 15px;
+    margin: 0px 15px;
 }
 
 .iconsnav {
@@ -77,14 +84,14 @@ header {
 }
 
 /* Hero section */
-.hero {
+.hero-home, .about-hero {
     /* Make position relative so that the before element can be positioned relative to this */
     position: relative;
     text-align: center;
     padding: 100px 0px;
 }
 
-.hero::before {
+.hero-home::before, .about-hero::before {
     content: "";
     /* Position using the top and left properties and relative to the hero section */
     position: absolute;
@@ -93,8 +100,7 @@ header {
     /* Set width and height based on the hero section */
     width: 100%;
     height: 100%;
-    /* Define background images */
-    background-image: url("images/hero_background_ai.jpg");
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: 50%;
@@ -103,6 +109,11 @@ header {
 
     /* Move background behind the hero text */
     z-index: -1;
+}
+
+.hero-home::before {
+    /* Define background image */
+    background-image: url("images/hero_home_background.jpg");
 
 }
 
@@ -235,10 +246,280 @@ footer {
     text-align: center;
     background-color: black;
     padding: 30px;
+    clear: both;
 }
-
 
 footer p {
     font-size: 1em;
     color: white;
+}
+
+footer span {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Enquire hero section */
+.hero-enquire {
+    background-color: black;
+    text-align: center;
+    padding: 50px;
+}
+
+/* Enquire FAQ section */
+.faq {
+    padding: 50px;
+    margin: 0px 100px;
+}
+
+.faq h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq p {
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+.faq-question {
+    background-color: rgb(241, 241, 241);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.email {
+    text-decoration: underline;
+    color: black;
+}
+
+/* Enquiry form section */
+.enquire-form {
+    margin: 100px;
+    padding: 25px 50px;
+    /* Set outline for the enquiry form */
+    border: 1px solid grey;
+    box-shadow: 0 2px 4px grey;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+}
+
+.enquire-form h2, .enquire-form p {
+    /* Align title and set margin */
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.enquire-form fieldset {
+    /* Remove border from fieldset */
+    border: 0;
+}
+
+/* Fieldset legend that act as blocks */
+.block-legend {
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+/* Combining 2 fields in 1 row */
+.combine-row-2, .combine-row {
+    /* Set to flexbox and allow wrap */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.combine-row {
+    /* Distribute spacing evenly between 1st and last item */
+    justify-content: space-between;
+}
+
+.form-split {
+    /* Fields that are splitted set the min-width to evenly distribute field spacing*/
+    min-width: 48%;
+}
+
+.enquire-form label {
+    /* Set label to inline block which acts as a block element but inline */
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+/* Decorate input fields for text, email, select and textarea */
+.enquire-form input[type="text"],
+.enquire-form input[type="email"],
+.enquire-form select,
+.enquire-form textarea {
+    /* Set width to take full space of the form */
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0px;
+    /* Change to rounded border */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* Allow animation when focus */
+    transition: border-color 0.4s;
+}
+
+.enquire-form textarea {
+    /* Allow textarea to be resized vertical only */
+    resize: vertical;
+}
+
+/* When input is on focus change border color and disable outline */
+.enquire-form input[type="text"]:focus,
+.enquire-form input[type="email"]:focus,
+.enquire-form select:focus,
+.enquire-form textarea:focus {
+    border-color: rgb(0, 132, 255);
+    outline: none;
+}
+
+.combine-row-2 {
+    padding: 6px 0;
+}
+
+.inline-legend {
+    padding-right: 12px;
+}
+
+.combine-rad {
+    padding-bottom: 8px;
+}
+
+/* Submit and reset button aligning center */
+.form-act {
+    text-align: center;
+    margin: 12px 0;
+}
+
+/* Change design of the submit and reset button */
+.enquire-form input[type="submit"],
+.enquire-form input[type="reset"] {
+    padding: 10px 20px;
+    font-size: 0.9em;
+    margin: 0px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    /* Allow animation when hovering */
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.enquire-form input[type="submit"] {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    
+}
+
+.enquire-form input[type="reset"] {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.enquire-form input[type="submit"]:hover,
+.enquire-form input[type="reset"]:hover {
+    background-color: rgb(243, 169, 31);
+    color: black;
+    border-color: black;
+}
+
+/* About me hero */
+.about-hero {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.about-hero::before {
+    background-image: url("images/hero_about_background.jpg")
+}
+
+/* About me section */
+.my-details {
+    margin: 50px 150px 50px 150px;
+    padding: 50px;
+    background-color: #f0ececb9;
+    border-radius: 8px;
+    position: relative;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px grey;
+}
+
+.my-details::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.my-details figure{
+    float: right;
+}
+
+.my-details figure img {
+    border: 5px double rgb(223, 223, 223);
+    padding: 20px;
+    width: 200px;
+    height: auto;
+}
+
+.my-details figcaption {
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.my-details h2 {
+    margin-bottom: 12px;
+
+}
+
+dt {
+    clear: left;
+    float: left;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 8px;
+}
+dt::after {
+    content: ":"; 
+}
+
+dd {
+    margin-bottom: 10px;
+}
+
+.details-div {
+    position: relative;
+    top: 80px;
+    margin-left: 50px;
+}
+
+.timetable {
+    margin: 0 30px 30px 30px;
+    padding: 20px;
+}
+
+.timetable h2 {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    width: 10%;
+    padding: 10px;
+}
+
+tbody th, .test {
+    width: 5%;
 }

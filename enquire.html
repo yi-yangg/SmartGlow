@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Reach out with SmartGlow for any questions or enquiries about our smart lighting products.">
+        <meta name="keywords" content="SmartGlow enquiry, product enquiry, customer support, contact us">
+        <meta name="author" content="Chong Yi Yang">
+        <title>Enquire Us | SmartGlow</title>
+        <!-- Icon beside title link -->
+        <link rel="icon" href="images/smartglow.ico" type="image/x-icon">
+
+        <!-- Link for CSS style sheet -->
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+
+    <body>
+        <!-- Header for navigations -->
+        <header>
+            <nav>
+                <ul class="navbar">
+                    <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
+                    <li><a class="links" href="product.html">Product</a></li>
+                    <li><a class="links" href="enquire.html">Enquire</a></li>
+                    <li><a class="links" href="about.html">About</a></li>
+                    <li><a class="links" href="Enhancements.html">Enhancements</a></li>
+                    
+                </ul>
+            </nav>
+            <nav class="iconsnav">
+                <ul class="navbar">
+                    <li><a href="#"><img class="icons" src="images/cart_icon.png" alt="Cart"></a></li>
+                    <li><a href="#"><img class="icons" src="images/profile_icon.png" alt="Profile"></a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Hero for enquire page -->
+        <section class="hero-enquire">
+            <div class="hero-content">
+                <h1>Got Questions?</h1>
+                <p>Check out our FAQ for quick answers.</p>
+                <p>Still need help? Use the form below.</p>
+            </div>
+        </section>
+
+        <!-- FAQ section before the enquiry form -->
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3 class="faq-question">What products do you offer?</h3>
+            <p>We offer a range of smart lighting products, such as smart light bulbs, smart LEDs, and smart flexible light strips.</p>
+        
+            <h3 class="faq-question">Do you offer any installation services?</h3>
+            <p>Currently, we do not offer installation services. However, our products are designed for easy installation by the user.</p>
+
+            <h3 class="faq-question">How can I control my lights?</h3>
+            <p>There are multiple ways you can control our lights, such as through our smartphone app or the provided remote control.</p>
+            
+            <h3 class="faq-question">How can I request a refund?</h3>
+            <!-- Paragraph with link and mailto to a sample support email -->
+            <p>
+                If you are not satisfied with your purchase, you can request a refund by contacting our 
+                <a class="email" href="mailto:support@smartglow.com">support team</a>. Please also provide
+                your order number and reason for the refund in your request.
+            </p>
+        </section> 
+
+        <!-- Section for enquiry form -->
+        <section class="enquire-form">
+            <!-- Content before the form -->
+            <h2>Got Questions?</h2>
+            <p>We're here to help! Please fill out the form below to submit your enquiry.</p>
+            
+            <!-- Form -->
+            <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+                <!-- Field set for personal information -->
+                <fieldset>
+                    <legend class="block-legend">Personal Information</legend>
+
+                    <!-- Div to combine multiple rows using flex box -->
+                    <div class="combine-row">
+
+                        <!-- Div to combine label and input so that it acts as a block element -->
+                        <div class="form-split">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name" required maxlength="25" pattern="[a-zA-Z ]+" placeholder="John">
+                        </div>
+
+                        <div class="form-split">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" required maxlength="25" pattern="[a-zA-Z ]+" placeholder="Doe">
+                        </div>
+                    </div>
+                    
+                    <!-- Email address input -->
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="example@domain.com">
+                    
+                    <!-- Phone number input -->
+                    <label for="phone-no">Phone Number</label>
+                    <input type="text" id="phone-no" name="phone-no" maxlength="10" pattern="\d{1,10}" placeholder="i.e. 0123456789" required>
+                    
+                    <!-- Street address input -->
+                    <label for="street-add">Street Address</label>
+                    <input type="text" id="street-add" name="street-add" required maxlength="40" pattern="[a-zA-Z0-9 ]+">
+                    
+                    <!-- Street town input -->
+                    <label for="street-suburb">Suburb/Town</label>
+                    <input type="text" id="street-suburb" name="street-suburb" required maxlength="20" pattern="[a-zA-Z0-9 ]+">
+
+                    <!-- Field set for address state and postcode -->
+                    <fieldset>
+                        <legend class="block-legend">Address Details</legend>
+                        <!-- Combine state and postcode input into the same row -->
+                        <div class="combine-row">
+                            <div class="form-split">
+                                <label for="street-state">State</label>
+                                <select id="street-state" name="street-state" required>
+                                    <option value="" selected>--- Please Select ---</option>
+                                    <option value="VIC">VIC</option>
+                                    <option value="NSW">NSW</option>
+                                    <option value="QLD">QLD</option>
+                                    <option value="NT">NT</option>
+                                    <option value="WA">WA</option>
+                                    <option value="SA">SA</option>
+                                    <option value="TAS">TAS</option>
+                                    <option value="ACT">ACT</option>
+                                </select>
+                            </div>
+                            <div class="form-split">
+                                <label for="street-post">Postcode</label>
+                                <input type="text" id="street-post" name="street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
+                            </div>
+                           
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Field set for contact method -->
+                    <fieldset>
+                        <!-- Make radio buttons and legend to the same row -->
+                        <div class="combine-row-2">
+                            <legend class="inline-legend">Contact Method</legend>
+                            
+                            <div>
+                                <div class="combine-rad">
+                                    <input type="radio" id="email-rad" name="contact-method" value="email" required>
+                                    <label for="email-rad">Email</label>
+                                </div>
+                                <div class="combine-rad">
+                                    <input type="radio" id="post-rad" name="contact-method" value="post">
+                                    <label for="post-rad">Post</label>
+                                </div>
+                                <div class="combine-rad">
+                                    <input type="radio" id="phone-rad" name="contact-method" value="phone">
+                                    <label for="phone-rad">Phone</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </fieldset>
+
+                <!-- Field set for product information -->
+                <fieldset>
+                    <legend class="block-legend">Product Information</legend>
+                    <!-- Tick box for product -->
+                    <label for="product">Enquiring Product</label>
+                    <select id="product" name="product" required>
+                        <option value="" selected>--- Please Select ---</option>
+                        <option value="light-bulbs">Smart Light Bulbs</option>
+                        <option value="leds">Smart LEDs</option>
+                        <option value="light-strips">Smart Light Strips</option>
+                    </select>
+
+                    <!-- Field set for product features, similar to contact method radio -->
+                    <fieldset>
+                        <div class="combine-row-2">
+                            <legend class="inline-legend">Product Features</legend>
+                            <div>
+                                <div class="combine-rad">
+                                    <input type="checkbox" id="remote-control" name="features[]" value="remote-control" checked>
+                                    <label for="remote-control">Remote Control</label>
+                                </div>
+                                
+                                <div class="combine-rad">
+                                    <input type="checkbox" id="color-change" name="features[]" value="color-change">
+                                    <label for="color-change">Color Change</label>
+                                </div>
+    
+                                <div class="combine-rad">
+                                    <input type="checkbox" id="energy-efficient" name="features[]" value="energy-efficient">
+                                    <label for="energy-efficient">Energy Efficient</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Text area for comment -->
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment" rows="5" cols="40" placeholder="Specify particular aspects you are interested in..."></textarea>
+                </fieldset>
+
+                <!-- Div to group submit and reset button together -->
+                <div class="form-act">
+                    <input type="submit" value="Submit Enquiry">
+                    <input type="reset" value="Reset form">
+                </div>
+                
+            </form>
+        </section>
+
+        <!-- Footer with copyright -->
+        <footer>
+            <p>&copy; 2024, SmartGlow.<br><span>Created by Chong Yi Yang.</span><br><span>All rights reserved.</span></p>
+        </footer>
+    </body>
+</html>
