@@ -11,12 +11,23 @@ description: css file for assignment 1
     
     box-sizing: content-box;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
-body {
-    margin: 0;
-    padding: 0;
+h1 {
+    font-size: 3em;
 }
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+}
+p {
+    font-size: 1.2em;
+    margin: 16px 0;
+}
+
 
 #logo {
     /* Set logo image size */
@@ -37,8 +48,6 @@ header {
     /* Set unordered list to be a flex box */
     display: flex;
     align-items: center;
-    margin: 0;
-    padding: 0;
     gap: 20px;
     /* Set height to fill header */
     height: 100%;
@@ -72,7 +81,7 @@ header {
     /* Make position relative so that the before element can be positioned relative to this */
     position: relative;
     text-align: center;
-    padding: 75px 0px;
+    padding: 100px 0px;
 }
 
 .hero::before {
@@ -98,9 +107,7 @@ header {
 }
 
 .hero-content h1 {
-    font-size: 3em;
     color: white;
-    margin: 0;
 }
 
 .hero-content p {
@@ -114,12 +121,124 @@ header {
     padding: 18px 48px;
     text-decoration: none;
     border: 0;
-    border-radius: 2rem;
+    border-radius: 30px;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
+    transition: transform 0.3s;
+}
+
+/* Add a transform scale to enlarge the button when hovered */
+#shopbtn:hover {
+    transform: scale(1.05);
 }
 
 /* Features section */
 .features {
     padding: 20px 50px;
+    /* Align text to center */
+    text-align: center;
+}
+
+.features h2 {
+    margin: 24px 0 0 0;
+}
+
+
+.feature-container {
+    /* Make feature container a flexbox */
+    display: flex;
+    /* Set all content to center */
+    justify-content: center;
+    /* Set gaps between each content */
+    gap: 24px;
+    /* Allow content to wrap when unable to fit */
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    /* Set card max width */
+    max-width: 300px;
+    border: 1px solid rgb(163, 163, 163);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 4px grey;
+    /* Animation when scaling on hover */
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: scale(1.03);
+}
+
+/* Direct child p of feature class */
+.features > p {
+    margin-bottom: 30px;
+}
+
+/* Explore section */
+.explore {
+    /* Set explore section to be a flexbox */
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    gap: 25px;
+    background-color: rgb(243, 243, 243);
+    margin: 25px 100px;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 500px;
+}
+
+.explore-content {
+    max-width: 50%;
+}
+
+.explore-image img {
+    width: 480px;
+    height: auto;
+}
+
+/* Enquiry section */
+.enquiry {
+    padding: 50px;
+    background-color: rgb(240, 240, 231);
+    text-align: center;
+}
+
+#rightarr {
+    width: 24px;
+    height: auto;
+}
+
+
+#enqbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    gap: 10px;
+    padding: 0px 25px;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: color 0.3s, background-color 0.3s, fill 0.3s;
+}
+
+#enqbtn:hover {
+    color: white;
+    background-color: black;
+    fill: white;
+}
+
+/* Footer section */
+footer {
+    text-align: center;
+    background-color: black;
+    padding: 30px;
+}
+
+
+footer p {
+    font-size: 1em;
+    color: white;
 }
