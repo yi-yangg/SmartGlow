@@ -5,6 +5,7 @@
         <meta name="description" content="Reach out with SmartGlow for any questions or enquiries about our smart lighting products.">
         <meta name="keywords" content="SmartGlow enquiry, product enquiry, customer support, contact us">
         <meta name="author" content="Chong Yi Yang">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Enquire Us | SmartGlow</title>
         <!-- Icon beside title link -->
         <link rel="icon" href="images/smartglow.ico" type="image/x-icon">
@@ -16,23 +17,30 @@
     <body>
         <!-- Header for navigations -->
         <header>
-            <nav>
-                <ul class="navbar">
-                    <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
-                    <li><a class="links" href="product.html">Product</a></li>
-                    <li><a class="links" href="enquire.html">Enquire</a></li>
-                    <li><a class="links" href="about.html">About</a></li>
-                    <li><a class="links" href="Enhancements.html">Enhancements</a></li>
-                    
-                </ul>
-            </nav>
-            <nav class="iconsnav">
-                <ul class="navbar">
-                    <li><a href="#"><img class="icons" src="images/cart_icon.png" alt="Cart"></a></li>
-                    <li><a href="#"><img class="icons" src="images/profile_icon.png" alt="Profile"></a></li>
+            <div class="shown-menu">
+                <nav>
+                    <ul class="navbar">
+                        <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
+                        <li><a class="links" href="product.html">Product</a></li>
+                        <li><a class="links" href="enquire.html">Enquire</a></li>
+                        <li><a class="links" href="about.html">About</a></li>
+                        <li><a class="links" href="Enhancements.html">Enhancements</a></li>
+                        
+                    </ul>
+                </nav>
+                
+            </div>
+            <!-- A hidden menu that shows when the media reaches 768px (tablet size) -->
+            <nav class="hidden-menu">
+                <ul class="dropdown">
+                    <li><a class="hidden-links" href="product.html">Product</a></li>
+                    <li><a class="hidden-links" href="enquire.html">Enquire</a></li>
+                    <li><a class="hidden-links" href="about.html">About</a></li>
+                    <li><a class="hidden-links" href="Enhancements.html">Enhancements</a></li>
                 </ul>
             </nav>
         </header>
+
         <!-- Hero for enquire page -->
         <section class="hero-enquire">
             <div class="hero-content">
@@ -59,13 +67,13 @@
             <!-- Paragraph with link and mailto to a sample support email -->
             <p>
                 If you are not satisfied with your purchase, you can request a refund by contacting our 
-                <a class="email" href="mailto:support@smartglow.com">support team</a>. Please also provide
+                <a class="inline-link" href="mailto:support@smartglow.com">support team</a>. Please also provide
                 your order number and reason for the refund in your request.
             </p>
         </section> 
 
         <!-- Section for enquiry form -->
-        <section class="enquire-form">
+        <section id="enquire-sec" class="enquire-form">
             <!-- Content before the form -->
             <h2>Got Questions?</h2>
             <p>We're here to help! Please fill out the form below to submit your enquiry.</p>
@@ -97,7 +105,7 @@
                     
                     <!-- Phone number input -->
                     <label for="phone-no">Phone Number</label>
-                    <input type="text" id="phone-no" name="phone-no" maxlength="10" pattern="\d{1,10}" placeholder="i.e. 0123456789" required>
+                    <input type="text" id="phone-no" name="phone-no" maxlength="10" pattern="\d{10}" placeholder="i.e. 0123456789" required>
                     
                     <!-- Street address input -->
                     <label for="street-add">Street Address</label>
@@ -137,24 +145,24 @@
                     <!-- Field set for contact method -->
                     <fieldset>
                         <!-- Make radio buttons and legend to the same row -->
-                        <div class="combine-row-2">
-                            <legend class="inline-legend">Contact Method</legend>
-                            
-                            <div>
-                                <div class="combine-rad">
-                                    <input type="radio" id="email-rad" name="contact-method" value="email" required>
-                                    <label for="email-rad">Email</label>
-                                </div>
-                                <div class="combine-rad">
-                                    <input type="radio" id="post-rad" name="contact-method" value="post">
-                                    <label for="post-rad">Post</label>
-                                </div>
-                                <div class="combine-rad">
-                                    <input type="radio" id="phone-rad" name="contact-method" value="phone">
-                                    <label for="phone-rad">Phone</label>
-                                </div>
+
+                        <legend class="inline-legend">Contact Method</legend>
+                        
+                        <div class="inline-beside-legend">
+                            <div class="combine-rad">
+                                <input type="radio" id="email-rad" name="contact-method" value="email" required>
+                                <label for="email-rad">Email</label>
+                            </div>
+                            <div class="combine-rad">
+                                <input type="radio" id="post-rad" name="contact-method" value="post">
+                                <label for="post-rad">Post</label>
+                            </div>
+                            <div class="combine-rad">
+                                <input type="radio" id="phone-rad" name="contact-method" value="phone">
+                                <label for="phone-rad">Phone</label>
                             </div>
                         </div>
+
                     </fieldset>
                 </fieldset>
 
@@ -172,23 +180,21 @@
 
                     <!-- Field set for product features, similar to contact method radio -->
                     <fieldset>
-                        <div class="combine-row-2">
-                            <legend class="inline-legend">Product Features</legend>
-                            <div>
-                                <div class="combine-rad">
-                                    <input type="checkbox" id="remote-control" name="features[]" value="remote-control" checked>
-                                    <label for="remote-control">Remote Control</label>
-                                </div>
-                                
-                                <div class="combine-rad">
-                                    <input type="checkbox" id="color-change" name="features[]" value="color-change">
-                                    <label for="color-change">Color Change</label>
-                                </div>
-    
-                                <div class="combine-rad">
-                                    <input type="checkbox" id="energy-efficient" name="features[]" value="energy-efficient">
-                                    <label for="energy-efficient">Energy Efficient</label>
-                                </div>
+                        <legend class="inline-legend">Product Features</legend>
+                        <div class="inline-beside-legend">
+                            <div class="combine-rad">
+                                <input type="checkbox" id="remote-control" name="features[]" value="remote-control" checked>
+                                <label for="remote-control">Remote Control</label>
+                            </div>
+                            
+                            <div class="combine-rad">
+                                <input type="checkbox" id="color-change" name="features[]" value="color-change">
+                                <label for="color-change">Color Change</label>
+                            </div>
+
+                            <div class="combine-rad">
+                                <input type="checkbox" id="energy-efficient" name="features[]" value="energy-efficient">
+                                <label for="energy-efficient">Energy Efficient</label>
                             </div>
                         </div>
                     </fieldset>

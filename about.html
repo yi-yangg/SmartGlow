@@ -17,67 +17,75 @@
     <body>
         <!-- Header for navigations -->
         <header>
-            <nav>
-                <ul class="navbar">
-                    <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
-                    <li><a class="links" href="product.html">Product</a></li>
-                    <li><a class="links" href="enquire.html">Enquire</a></li>
-                    <li><a class="links" href="about.html">About</a></li>
-                    <li><a class="links" href="Enhancements.html">Enhancements</a></li>
-                    
-                </ul>
-            </nav>
-            <nav class="iconsnav">
-                <ul class="navbar">
-                    <li><a href="#"><img class="icons" src="images/cart_icon.png" alt="Cart"></a></li>
-                    <li><a href="#"><img class="icons" src="images/profile_icon.png" alt="Profile"></a></li>
+            <div class="shown-menu">
+                <nav>
+                    <ul class="navbar">
+                        <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
+                        <li><a class="links" href="product.html">Product</a></li>
+                        <li><a class="links" href="enquire.html">Enquire</a></li>
+                        <li><a class="links" href="about.html">About</a></li>
+                        <li><a class="links" href="enhancements.html">Enhancements</a></li>
+                        
+                    </ul>
+                </nav>
+                
+            </div>
+            <!-- A hidden menu that shows when the media reaches 768px (tablet size) -->
+            <nav class="hidden-menu">
+                <ul class="dropdown">
+                    <li><a class="hidden-links" href="product.html">Product</a></li>
+                    <li><a class="hidden-links" href="enquire.html">Enquire</a></li>
+                    <li><a class="hidden-links" href="about.html">About</a></li>
+                    <li><a class="hidden-links" href="enhancements.html">Enhancements</a></li>
                 </ul>
             </nav>
         </header>
 
-        <section class="about-hero">
+        <!-- Hero for about page -->
+        <section id="about-hero-sec" class="about-hero">
             <div class="hero-content">
                 <h1>About Me</h1>
                 <p>Here you will find detailed information about me, including my personal details, background and timetable</p>
             </div>
         </section>
 
-        <section class="my-details">
+        <!-- Section displaying my details -->
+        <section id="details-sec" class="my-details">
             <figure>
                 <img src="images/my_picture.jpg" alt="Photo of Chong Yi Yang">
                 <figcaption>Photo of Me</figcaption>
            
             </figure>
 
-            <div class="details-div">
-                <h2>My Details</h2>
-                <dl>
-                    <dt>Name</dt>
-                    <dd>Chong Yi Yang</dd>
-        
-                    <dt>Student Number</dt>
-                    <dd>105297292</dd>
-        
-                    <dt>Tutor's Name</dt>
-                    <dd>Fatma Mohammed</dd>
-        
-                    <dt>Course</dt>
-                    <dd>Master of Cybersecurity</dd>
-        
-                    <dt>Email</dt>
-                    <dd><a class="email" href="mailto:105297292@student.swin.edu.au">105297292@student.swin.edu.au</a></dd>
-                </dl>
-            </div>
             
+            <h2>My Details</h2>
+            <!-- Definition list for details -->
+            <dl>
+                <dt>Name</dt>
+                <dd>Chong Yi Yang</dd>
+    
+                <dt>Student Number</dt>
+                <dd>105297292</dd>
+    
+                <dt>Tutor's Name</dt>
+                <dd>Fatma Mohammed</dd>
+    
+                <dt>Course</dt>
+                <dd>Master of Cybersecurity</dd>
+    
+                <dt>Email</dt>
+                <dd><a class="inline-link" href="mailto:105297292@student.swin.edu.au">105297292@student.swin.edu.au</a></dd>
+            </dl>
             
         </section>
         
+        <!-- Timetable section -->
         <section class="timetable">
             <h2>Weekly Timetable</h2>
             <table>
                 <thead>
                     <tr>
-                        <th class="test"></th>
+                        <th class="time-col"></th>
                         <th>Monday</th>
                         <th>Tuesday</th>
                         <th>Wednesday</th>
@@ -113,7 +121,15 @@
                     </tr>
 
                     <tr>
-                        <td></td>
+                        <td rowspan="2">
+                            <div class="event">
+                                <p>6:30pm - 8:30pm</p>
+                                
+                                <p><strong>COS60011</strong></p>
+                                <p>Live Online Lecture 1 - 1</p>
+                            </div>
+
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -122,7 +138,6 @@
 
                     <tr>
                         <th rowspan="2">9am</th>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -147,7 +162,14 @@
                     </tr>
 
                     <tr>
-                        <td></td>
+                        <td rowspan="2">
+                            <div class="event">
+                                <p>10:30am - 11:30am</p>
+                                <p><strong>TNE60002</strong></p>
+                                <p>Lecture 1 - 1</p>
+                            </div>
+
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -160,11 +182,16 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
+                        <td rowspan="6">
+                            <div class="event">
+                                <p>11.30am - 2.30pm</p>
+                                    <p><strong>TNE60002</strong></p>
+                                    <p>Class 1 - 2</p>
+                            </div>
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -177,11 +204,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -194,11 +219,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -211,11 +234,16 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
+                        <td rowspan="4">
+                            <div class="event">
+                                <p>2:30pm - 4:30pm</p>
+                                    <p><strong>COS60004</strong></p>
+                                    <p>Live Online Lecture 1 - 1</p>
+                            </div>
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -228,11 +256,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -245,7 +271,6 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
@@ -253,7 +278,13 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <td rowspan="4">
+                            <div class="event">
+                                <p>4:30pm - 6:30pm</p>
+                                    <p><strong>CYB80002</strong></p>
+                                    <p>Tutorial 1 - 2</p>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr>
@@ -262,11 +293,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -279,13 +308,30 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
 
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td rowspan="4">
+                            <div class="event">
+                                <p>6:30pm - 8:30pm</p>
+                                    <p><strong>COS60004</strong></p>
+                                    <p>Class 1 - 1</p>
+                            </div>
+                        </td>
+                        <td rowspan="4">
+                            <div class="event">
+                                <p>6:30pm - 8:30pm</p>
+                                    <p><strong>COS60011</strong></p>
+                                    <p>Workshop 1 - 5</p>
+                            </div>
+                        </td>
+                        <td rowspan="4">
+                            <div class="event">
+                                <p>6:30pm - 8:30pm</p>
+                                    <p><strong>CYB80002</strong></p>
+                                    <p>Live Online Lecture 1 - 1</p>
+                            </div>
+                        </td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -294,7 +340,15 @@
                         <th rowspan="2">7pm</th>
                         <td></td>
                         <td></td>
+                    </tr>
+
+                    <tr>
                         <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th rowspan="2">8pm</th>
                         <td></td>
                         <td></td>
                     </tr>

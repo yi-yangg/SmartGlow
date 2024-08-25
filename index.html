@@ -5,6 +5,7 @@
         <meta name="description" content="Discover the latest smart lighting technology. Our smart light bulbs offer energy efficiency, remote control, and customizable lighting in every room in your house.">
         <meta name="keywords" content="smart light bulbs, smart lighting, smart home, remote control light">
         <meta name="author" content="Chong Yi Yang">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Smart Light Bulb | SmartGlow</title>
         <!-- Icon beside title link -->
         <link rel="icon" href="images/smartglow.ico" type="image/x-icon">
@@ -16,34 +17,42 @@
     <body>
         <!-- Header for navigations -->
         <header>
-            <nav>
-                <ul class="navbar">
-                    <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
-                    <li><a class="links" href="product.html">Product</a></li>
-                    <li><a class="links" href="enquire.html">Enquire</a></li>
-                    <li><a class="links" href="about.html">About</a></li>
-                    <li><a class="links" href="Enhancements.html">Enhancements</a></li>
-                    
+            <div class="shown-menu">
+                <nav>
+                    <ul class="navbar">
+                        <li><a href="index.html"><img id="logo" src="images/smartglow_header.png" alt="SmartGlow Logo"></a></li>
+                        <li><a class="links" href="product.html">Product</a></li>
+                        <li><a class="links" href="enquire.html">Enquire</a></li>
+                        <li><a class="links" href="about.html">About</a></li>
+                        <li><a class="links" href="enhancements.html">Enhancements</a></li>
+                        
+                    </ul>
+                </nav>
+                
+            </div>
+            <!-- A hidden menu that shows when the media reaches 768px (tablet size) -->
+            <nav class="hidden-menu">
+                <ul class="dropdown">
+                    <li><a class="hidden-links" href="product.html">Product</a></li>
+                    <li><a class="hidden-links" href="enquire.html">Enquire</a></li>
+                    <li><a class="hidden-links" href="about.html">About</a></li>
+                    <li><a class="hidden-links" href="Enhancements.html">Enhancements</a></li>
                 </ul>
             </nav>
-            <nav class="iconsnav">
-                <ul class="navbar">
-                    <li><a href="#"><img class="icons" src="images/cart_icon.png" alt="Cart"></a></li>
-                    <li><a href="#"><img class="icons" src="images/profile_icon.png" alt="Profile"></a></li>
-                </ul>
-            </nav>
+
+            
         </header>
 
         <!-- Hero section to welcome user into the webpage -->
-        <section class="hero-home">
+        <section id="home-hero-sec" class="hero-home">
             <div class="hero-content">
                 <h1>Welcome to SmartGlow</h1>
                 <p>Experience the Future of Lightning</p>
-                <a href="product.html"><button id="shopbtn">Shop Now</button></a>
+                <a id=shopbtn href="product.html">Shop Now</a>
             </div>
         </section>
         <!-- Features section to display features of SmartGlow -->
-        <section class="features">
+        <section id="feature-sec" class="features">
             <h2>Our Key Features</h2>
             <p>Everything you need to know about our product</p>
             <!-- Container to store cards -->
@@ -66,7 +75,7 @@
             </div>
         </section>
         <!-- Explore section -->
-        <section class="explore"> 
+        <section id="explore-section" class="explore"> 
             <!-- Explore text content -->
             <div class="explore-content">
                 <h2> Explore Our SmartGlow Products </h2>
@@ -79,10 +88,10 @@
                 <img src="images/product_map.jpg" alt="Product Map" usemap="#image-map">
                 
                 <map name="image-map">
-                    <area alt="Smart Light Bulb" title="Smart Light Bulb" href="" coords="8,185,17,215,30,219,31,438,35,437,36,220,68,222,82,222,89,197,70,187,53,184,53,173,46,172,45,183,27,181" shape="poly">
-                    <area alt="Smart LED" title="Smart LED" href="" coords="154,149,140,153,130,163,123,180,123,204,134,226,145,240,161,248,182,249,196,241,207,223,208,206,206,183,193,165,178,152,166,149" shape="poly">
-                    <area alt="Flexible Light Strip" title="Flexible Light Strip" href="" coords="349,42,313,51,297,61,288,76,287,91,294,104,311,112,329,116,319,131,330,139,354,145,379,144,410,139,430,133,442,125,439,112,420,103,435,96,437,82,435,68,419,53,391,44" shape="poly">
-                    <area alt="Smart LED" title="Smart LED" href="" coords="93,0,337,154,479,129,479,144,334,169,0,1" shape="poly">
+                    <area alt="Smart Light Bulb" title="Smart Light Bulb" href="product.html#smart-light-bulb" coords="8,185,17,215,30,219,31,438,35,437,36,220,68,222,82,222,89,197,70,187,53,184,53,173,46,172,45,183,27,181" shape="poly">
+                    <area alt="Smart LED" title="Smart LED" href="product.html#smart-led-strips" coords="154,149,140,153,130,163,123,180,123,204,134,226,145,240,161,248,182,249,196,241,207,223,208,206,206,183,193,165,178,152,166,149" shape="poly">
+                    <area alt="Flexible Light Strip" title="Flexible Light Strip" href="product.html#smart-flexi-light" coords="349,42,313,51,297,61,288,76,287,91,294,104,311,112,329,116,319,131,330,139,354,145,379,144,410,139,430,133,442,125,439,112,420,103,435,96,437,82,435,68,419,53,391,44" shape="poly">
+                    <area alt="Smart LED" title="Smart LED" href="product.html#smart-led-strips" coords="93,0,337,154,479,129,479,144,334,169,0,1" shape="poly">
                 </map>
             </div>
         </section>

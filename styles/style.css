@@ -11,10 +11,9 @@ description: css file for assignment 1
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-body {
-    overflow-x: hidden;
-}
+
 
 h1 {
     font-size: 3em;
@@ -25,6 +24,10 @@ h2 {
 h3 {
     font-size: 1.5em;
 }
+
+h4 {
+    font-size: 1.3em;
+}
 p {
     font-size: 1.2em;
     margin: 16px 0;
@@ -33,20 +36,15 @@ p {
 
 #logo {
     /* Set logo image size */
-    width: 200px;
+    max-width: 200px;
     height: auto;
 }
 
-header {
+header .shown-menu {
     background-color: white;
     border-bottom: 2px solid rgba(180, 180, 180, 0.5);
     padding: 20px 40px;
     display: flex;
-    /* Make the header nav bar stick even when scrolling */
-    position: sticky;
-    top: 0;
-    /* Push element to the front most */
-    z-index: 999;
 }
 
 .navbar {
@@ -68,30 +66,41 @@ header {
     transition: background-color 0.2s;
 }
 
+
 .links:hover {
     background-color: #f0f0f0;
     border-radius: 5px;
 }
 
-.icons {
-    width: 48px;
-    height: auto;
-    margin: 0px 15px;
+.hidden-menu .dropdown {
+    list-style: none;
 }
 
-.iconsnav {
-    margin-left: auto;
+.hidden-links {
+    text-decoration: none;
+    color: black;
+    display: block;
+    font-size: 1.2em;
+    padding: 1em;
+    border-bottom: 1px solid rgba(180, 180, 180, 0.5);
 }
+
+.hidden-menu {
+    display: none;
+}
+
+
 
 /* Hero section */
-.hero-home, .about-hero {
+.hero-home, .about-hero, .product-hero {
     /* Make position relative so that the before element can be positioned relative to this */
     position: relative;
     text-align: center;
     padding: 100px 0px;
+    margin: 0 auto; 
 }
 
-.hero-home::before, .about-hero::before {
+.hero-home::before, .about-hero::before, .product-hero::before {
     content: "";
     /* Position using the top and left properties and relative to the hero section */
     position: absolute;
@@ -104,6 +113,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: 50%;
+    background-position-x: 50%;
     /* Darken the background image to make text visible */
     filter: brightness(0.5);
 
@@ -127,12 +137,13 @@ header {
 }
 
 #shopbtn {
+    display: inline-block;
     cursor: pointer;
     font-size: 1.1em;
-    padding: 18px 48px;
+    padding: 0.8em 2.5em;
     text-decoration: none;
     border: 0;
-    border-radius: 30px;
+    border-radius: 2rem;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     transition: transform 0.3s;
@@ -197,7 +208,6 @@ header {
     margin: 25px 100px;
     align-items: center;
     flex-wrap: wrap;
-    min-width: 500px;
 }
 
 .explore-content {
@@ -205,13 +215,13 @@ header {
 }
 
 .explore-image img {
-    width: 480px;
+    max-width: 100%;
     height: auto;
 }
 
 /* Enquiry section */
 .enquiry {
-    padding: 50px;
+    padding: 2em;
     background-color: rgb(240, 240, 231);
     text-align: center;
 }
@@ -228,8 +238,8 @@ header {
     justify-content: center;
     text-decoration: none;
     color: black;
-    gap: 10px;
-    padding: 0px 25px;
+    gap: 0.7em;
+    padding: 0 1em;
     border: 1px solid black;
     border-radius: 10px;
     transition: color 0.3s, background-color 0.3s, fill 0.3s;
@@ -260,7 +270,7 @@ footer span {
 }
 
 /* Enquire hero section */
-.hero-enquire {
+.hero-enquire, .enhancement-hero {
     background-color: black;
     text-align: center;
     padding: 50px;
@@ -289,7 +299,7 @@ footer span {
     text-align: left;
 }
 
-.email {
+.inline-link {
     text-decoration: underline;
     color: black;
 }
@@ -303,6 +313,8 @@ footer span {
     box-shadow: 0 2px 4px grey;
     border-radius: 12px;
     background-color: #f9f9f9;
+
+    box-sizing: border-box;
 }
 
 .enquire-form h2, .enquire-form p {
@@ -325,21 +337,18 @@ footer span {
 }
 
 /* Combining 2 fields in 1 row */
-.combine-row-2, .combine-row {
+.combine-row {
     /* Set to flexbox and allow wrap */
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-}
-
-.combine-row {
-    /* Distribute spacing evenly between 1st and last item */
     justify-content: space-between;
 }
 
 .form-split {
     /* Fields that are splitted set the min-width to evenly distribute field spacing*/
-    min-width: 48%;
+    min-width: 50%;
+    flex: 0 0 50%;
+    padding-right: 5px;
 }
 
 .enquire-form label {
@@ -378,22 +387,18 @@ footer span {
     outline: none;
 }
 
-.combine-row-2 {
-    padding: 6px 0;
+.inline-legend {
+    float: left;
+    padding-right: 12px;
 }
 
-.inline-legend {
-    padding-right: 12px;
+.inline-beside-legend {
+    /* Ensure the content stays in one column */
+    overflow: hidden; 
 }
 
 .combine-rad {
     padding-bottom: 8px;
-}
-
-/* Submit and reset button aligning center */
-.form-act {
-    text-align: center;
-    margin: 12px 0;
 }
 
 /* Change design of the submit and reset button */
@@ -401,11 +406,19 @@ footer span {
 .enquire-form input[type="reset"] {
     padding: 10px 20px;
     font-size: 0.9em;
-    margin: 0px 12px;
+    margin: 6px 12px;
     cursor: pointer;
     border-radius: 8px;
     /* Allow animation when hovering */
     transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+
+/* Submit and reset button aligning center */
+.form-act {
+    text-align: center;
+    margin: 12px 0;
+
 }
 
 .enquire-form input[type="submit"] {
@@ -421,6 +434,7 @@ footer span {
     border: 1px solid black;
 }
 
+
 .enquire-form input[type="submit"]:hover,
 .enquire-form input[type="reset"]:hover {
     background-color: rgb(243, 169, 31);
@@ -430,38 +444,42 @@ footer span {
 
 /* About me hero */
 .about-hero {
+    /* Add padding left and right */
     padding-left: 150px;
     padding-right: 150px;
 }
 
+
 .about-hero::before {
-    background-image: url("images/hero_about_background.jpg")
+    background-image: url("images/hero_about_background.jpg");
 }
 
 /* About me section */
 .my-details {
-    margin: 50px 150px 50px 150px;
+    margin: 50px;
     padding: 50px;
     background-color: #f0ececb9;
     border-radius: 8px;
-    position: relative;
     border: 1px solid black;
     box-shadow: 0 4px 6px grey;
 }
 
 .my-details::after {
+    /* Add an after pseudo class to ensure figure stays inside the section */
     content: "";
     display: block;
+    /* Clears the figure float */
     clear: both;
 }
 
-
+/* Make figure float right */
 .my-details figure{
     float: right;
 }
 
 .my-details figure img {
-    border: 5px double rgb(223, 223, 223);
+    /* Add double border */
+    border: 5px double rgb(219, 219, 219);
     padding: 20px;
     width: 200px;
     height: auto;
@@ -474,34 +492,32 @@ footer span {
 
 .my-details h2 {
     margin-bottom: 12px;
-
 }
 
-dt {
-    clear: left;
+.my-details dt {
+    /* Make dt float left so that dd flows right */
     float: left;
-    text-align: right;
     font-weight: bold;
     margin-bottom: 10px;
     margin-right: 8px;
+    /* Fixed width for all dt */
+    width: 30%;
 }
-dt::after {
+
+/* Add ':' after each dt */
+.my-details dt::after {
     content: ":"; 
 }
 
-dd {
+.my-details dd {
     margin-bottom: 10px;
 }
 
-.details-div {
-    position: relative;
-    top: 80px;
-    margin-left: 50px;
-}
-
+/* Timetable section */
 .timetable {
     margin: 0 30px 30px 30px;
     padding: 20px;
+    
 }
 
 .timetable h2 {
@@ -509,17 +525,364 @@ dd {
     margin-bottom: 12px;
 }
 
-table {
+.timetable table {
+    /* Make cells have 1 border instead of 2 */
     border-collapse: collapse;
+    /* Fill section to center */
     width: 100%;
 }
 
-td, th {
-    border: 1px solid black;
-    width: 10%;
+.timetable td, th {
+    /* Set relative height to cells */
+    height: 3em;
+    border: 1px solid rgb(185, 185, 185);
     padding: 10px;
 }
 
-tbody th, .test {
-    width: 5%;
+/* Set background colors */
+.timetable td {
+    background-color: #f8f8f8;
+}
+
+.timetable th {
+    background-color: #e9e9e9;
+}
+
+/* Class event */
+.event {
+    /* Make it a flex box */
+    display: flex;
+    /* Stack vertically */
+    flex-direction: column;
+    /* Align center vertically */
+    justify-content: center;
+    /* Fill whole slot */
+    min-height: 100%;
+    padding: 0px 10px;
+    border: 1px solid rgb(145, 145, 145);
+    border-radius: 4px;
+    background-color: rgba(255, 204, 62, 0.39);
+    /* Have animations on hovering */
+    transition: background-color 0.3s;
+}
+
+.event:hover {
+    /* Change bg color on hover */
+    background-color: rgba(255, 204, 62);
+}
+
+.event p{
+    margin: 3px 0;
+    font-size: 0.8em;
+}
+
+/* Product page */
+.product-hero::before {
+    background-image: url(images/product_hero.png);
+    background-position-y: 70%;
+}
+
+/* Copyright text on hero section */
+.product-hero .copyright-content {
+    font-size: 0.7em;
+    position: absolute;
+
+    /* Position bottom left of the hero section */
+    bottom: 0;
+    left: 0;
+    padding-left: 16px;
+}
+
+.product-hero .copyright-content a {
+    text-decoration: underline;
+    color: white;
+}
+
+.product-hero h1 {
+    /* 
+    Font variant: small caps
+    Font weight: Bold
+    Font size: 2.5em
+    Line Height: 1.2x
+    Font family: Arial, sans-serif
+    */
+    font: small-caps bold 2.5em/1.2 'Arial', sans-serif;
+}
+
+.side-nav {
+    /* Aside navigation bar float right */
+    float: right;
+    /* Width of 25% */
+    width: 25%;
+    background: #ffffff;
+    padding: 2rem;
+    /* Colored border */
+    border: 1px solid beige;
+    margin: 1rem;
+    box-shadow: 0 0 5px rgba(224, 119, 20, 0.623);
+
+    /* Make nav bar sticky so it follows scroll */
+    position: sticky;
+
+    /* Position 10% from the top and most right */
+    right: 0;
+    top: 10%;
+}
+
+.side-nav h3 {
+    box-sizing: border-box;
+    padding: 6px 0;
+}
+
+.side-nav ul li {
+    padding-left: 1.5rem;
+    list-style: circle;
+    /* Set position of list style to not pop out */
+    list-style-position: inside;
+}
+
+.side-nav li {
+    padding: 5px 0;
+    list-style:lower-roman;
+    list-style-position: inside;
+}
+
+.side-nav a {
+    text-decoration: none;
+    color: black;
+}
+
+.product-section {
+    margin: 2rem;
+    /* Product section takes rest of the width */
+    width: 68%;
+    padding: 1.5rem;
+    background-color: rgba(223, 221, 212, 0.274);
+}
+
+.product-section p {
+    text-align: justify;
+}
+
+.product-section li {
+    list-style-position: inside;
+    margin-bottom: 8px;
+}
+
+.product-section h4 {
+    margin-bottom: 8px;
+}
+
+.product-section img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0 20px 20px;
+}
+
+.product-section::after {
+    /* Make floating img contain inside the product section */
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Float img direction based on class */
+.right-float-img {
+    float: right;
+}
+.left-float-img {
+    float: left;
+}
+
+.enhancement-article {
+    margin: 2em;
+    padding: 1.5em;
+}
+
+.enhancement-article h4 {
+    margin-top: 16px;
+}
+
+.enhancement-article p, .enhancement-article h4, .enhancement-article ul, .enhancement-article h2{
+    padding-left: 15px;
+}
+
+.enhancement-article li {
+    list-style-position: inside;
+    margin-bottom: 6px;
+}
+
+.enhancement-article h2 {
+    margin-bottom: 8px;
+
+}
+
+/* Media for different widths */
+@media (max-width: 768px) {
+    /* Change heading and paragraph sizes */
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    h3 {
+        font-size: 1.2em;
+    }
+    .hero-content p {
+        font-size: 1em;
+        margin: 16px 0;
+    }
+    /* Show the hidden nav bar when width changes */
+    .hidden-menu {
+        display: block;
+    }
+
+    /* Remove the existing nav links */
+    .links {
+        display: none;
+    }
+
+    /* Center the logo */
+    nav{
+        margin: 0 auto;
+    }
+
+    /* Remove gap from the nav bar */
+    .navbar {
+        gap: 0;
+    }
+
+    #logo {
+        width: 100%;
+        height: auto;
+    }
+    
+    .explore {
+        /* Change flex direction to vertical */
+        flex-direction: column;
+        margin: 0;
+        padding: 30px 10px;
+    }
+
+    .explore-content {
+        /* Increase to full width for smaller screens */
+        max-width: 100%;
+        text-align: center;
+    }
+
+    /* Remove margin from FAQ and form section */
+    .faq, .enquire-form {
+        margin: 0;
+    }
+    
+    /* Change from display flex to block to break the row */
+    .combine-row {
+        display: block;
+    }
+
+    .enquire-form {
+        border-radius: 0;
+        border: 0;
+        border-top: 1px solid black;
+    }
+
+    /* Changes to about section */
+    .about-hero {
+        /* Decrease padding */
+        padding: 100px 50px;
+    }
+
+    .my-details {
+        /* Decrease margin and padding */
+        margin: 1em;
+        padding: 1.2em;
+    }
+
+    /* Remove figure float and align center */
+    .my-details figure {
+        float: none;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
+    /* dt take more width */
+    .my-details dt {
+        width: 50%;
+        font-size: 0.9em;
+    }
+
+    .my-details dd {
+        font-size: 0.8em;
+    }
+
+    /* Remove margin and padding on timetable section */ 
+    .timetable {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Make timetable smaller in size by changing padding and font size */
+    .timetable th, .timetable td {
+        padding: 5px;
+    }
+
+    .timetable th {
+        font-size: 0.5em;
+    }
+
+    .timetable .event {
+        font-size: 0.6em;
+        padding: 0;
+        text-align: center;
+    }
+
+    .enhancement-article {
+        margin: 1em;
+        padding: 0.5em;
+    }
+
+}
+
+/* Change the product range page */
+@media (max-width: 950px) {
+    /* Remove float on aside bar */
+    .side-nav {
+        float: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        top: 0;
+    }
+
+    /* Hide Navigation title on aside bar */
+    .side-nav h3 {
+        display: none;
+    }
+
+    .side-nav ol {
+        /* Make the navigation items flex horizontally */
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .side-nav ol li {
+        /* Remove list style */
+        list-style: none;
+        display: block;
+        text-align: center;
+        padding: 1em;
+    }
+
+    /* Remove subsection */
+    .side-nav ul {
+        display: none;
+    }
+
+    .product-section {
+        /* Increase product section width */
+        width: auto;
+    }
+
 }
