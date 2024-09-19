@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquire and Purchase | SmartGlow</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        .product-section {
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .remove-product {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let productCounter = 0;
+
+        // Function to dynamically add a new product section
+        function addProduct() {
+            productCounter++;
+            const productList = document.getElementById('product-list');
+
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product-section';
+            productDiv.setAttribute('id', 'product-' + productCounter);
+
+            productDiv.innerHTML = `
+                <button type="button" class="remove-product" onclick="removeProduct('product-${productCounter}')">X</button>
+
+                <label for="product-${productCounter}">Select Product</label>
+                <select id="product-select-${productCounter}" name="product[]" onchange="updateProductOptions(${productCounter})" required>
+                    <option value="" selected>--- Please Select ---</option>
+                    <option value="light-bulbs">Smart Light Bulbs</option>
+                    <option value="led-strips">Smart LED Strips</option>
+                    <option value="flexi-lights">Smart Flexi Lights</option>
+                </select>
+
+                <div id="product-options-${productCounter}"></div>
+
+                <label for="motion-sensor-${productCounter}">
+                    <input type="checkbox" id="motion-sensor-${productCounter}" name="motion-sensor-${productCounter}" value="motion-sensor">
+                    Motion Sensor (+$10.00)
+                </label>
+
+                <label for="quantity-${productCounter}">Quantity</label>
+                <input type="number" id="quantity-${productCounter}" name="quantity[]" min="1" value="1" required>
+            `;
+
+            productList.appendChild(productDiv);
+        }
+
+        // Function to dynamically remove a product section
+        function removeProduct(productId) {
+            const productDiv = document.getElementById(productId);
+            productDiv.remove();
+        }
+
+        // Function to update product-specific options based on selected product
+        function updateProductOptions(productCounter) {
+            const product = document.getElementById('product-select-' + productCounter).value;
+            const productOptionsDiv = document.getElementById('product-options-' + productCounter);
+
+            // Clear previous options
+            productOptionsDiv.innerHTML = '';
+
+            // Set new options based on selected product
+            if (product === 'light-bulbs') {
+                productOptionsDiv.innerHTML = `
+                    <label for="bulb-size-${productCounter}">Select Bulb Size</label>
+                    <select id="bulb-size-${productCounter}" name="bulb-size-${productCounter}" required>
+                        <option value="" selected>--- Please Select ---</option>
+                        <option value="a19">A19</option>
+                        <option value="br30">BR30</option>
+                        <option value="gu10">GU10</option>
+                    </select>
+                `;
+            } else if (product === 'led-strips') {
+                productOptionsDiv.innerHTML = `
+                    <label for="led-length-${productCounter}">Select LED Strip Length</label>
+                    <select id="led-length-${productCounter}" name="led-length-${productCounter}" required>
+                        <option value="" selected>--- Please Select ---</option>
+                        <option value="2m">2 meters</option>
+                        <option value="5m">5 meters</option>
+                        <option value="10m">10 meters</option>
+                    </select>
+                `;
+            } else if (product === 'flexi-lights') {
+                productOptionsDiv.innerHTML = `
+                    <label for="flexi-length-${productCounter}">Select Flexi Light Length</label>
+                    <select id="flexi-length-${productCounter}" name="flexi-length-${productCounter}" required>
+                        <option value="" selected>--- Please Select ---</option>
+                        <option value="1m">1 meter</option>
+                        <option value="2m">2 meters</option>
+                        <option value="5m">5 meters</option>
+                    </select>
+                `;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section id="enquire-sec" class="enquire-form">
+        <h2>Enquire and Purchase a Product</h2>
+        <p>Please select the products and fill out the form to complete your purchase.</p>
+        
+        <form method="post" action="payment.html">
+            <!-- Personal information fields -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" required>
+                
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </fieldset>
+
+            <!-- Product selection container -->
+            <fieldset>
+                <legend>Product Selection</legend>
+                <div id="product-list"></div>
+                <button type="button" onclick="addProduct()">Add Another Product</button>
+            </fieldset>
+
+            <!-- Submit button -->
+            <input type="submit" value="Pay Now">
+        </form>
+    </section>
+</body>
+</html>

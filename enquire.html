@@ -12,6 +12,8 @@
 
         <!-- Link for CSS style sheet -->
         <link rel="stylesheet" href="styles/style.css">
+        <script src="scripts/part2.js"></script>
+        <script src="scripts/part2_enquire.js"></script>
     </head>
 
     <body>
@@ -75,11 +77,11 @@
         <!-- Section for enquiry form -->
         <section id="enquire-sec" class="enquire-form">
             <!-- Content before the form -->
-            <h2>Got Questions?</h2>
-            <p>We're here to help! Please fill out the form below to submit your enquiry.</p>
+            <h2>Ready to Purchase?</h2>
+            <p>Thank you for choosing us! Please fill out the form below to complete your purchase.</p>
             
             <!-- Form -->
-            <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+            <form action="payment.html" id="purchase-form">
                 <!-- Field set for personal information -->
                 <fieldset>
                     <legend class="block-legend">Personal Information</legend>
@@ -107,41 +109,6 @@
                     <label for="phone-no">Phone Number</label>
                     <input type="text" id="phone-no" name="phone-no" maxlength="10" pattern="\d{10}" placeholder="i.e. 0123456789" required>
                     
-                    <!-- Street address input -->
-                    <label for="street-add">Street Address</label>
-                    <input type="text" id="street-add" name="street-add" required maxlength="40" pattern="[a-zA-Z0-9 ]+">
-                    
-                    <!-- Street town input -->
-                    <label for="street-suburb">Suburb/Town</label>
-                    <input type="text" id="street-suburb" name="street-suburb" required maxlength="20" pattern="[a-zA-Z0-9 ]+">
-
-                    <!-- Field set for address state and postcode -->
-                    <fieldset>
-                        <legend class="block-legend">Address Details</legend>
-                        <!-- Combine state and postcode input into the same row -->
-                        <div class="combine-row">
-                            <div class="form-split">
-                                <label for="street-state">State</label>
-                                <select id="street-state" name="street-state" required>
-                                    <option value="" selected>--- Please Select ---</option>
-                                    <option value="VIC">VIC</option>
-                                    <option value="NSW">NSW</option>
-                                    <option value="QLD">QLD</option>
-                                    <option value="NT">NT</option>
-                                    <option value="WA">WA</option>
-                                    <option value="SA">SA</option>
-                                    <option value="TAS">TAS</option>
-                                    <option value="ACT">ACT</option>
-                                </select>
-                            </div>
-                            <div class="form-split">
-                                <label for="street-post">Postcode</label>
-                                <input type="text" id="street-post" name="street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
-                            </div>
-                           
-                        </div>
-                    </fieldset>
-                    
                     <!-- Field set for contact method -->
                     <fieldset>
                         <!-- Make radio buttons and legend to the same row -->
@@ -164,13 +131,100 @@
                         </div>
 
                     </fieldset>
+
+                    <fieldset>
+                        <legend class="block-legend">Shipping Address</legend>
+                        
+                        <!-- Street address input -->
+                        <label for="ship-street-add">Street Address</label>
+                        <input type="text" id="ship-street-add" name="ship-street-add" required maxlength="40" pattern="[a-zA-Z0-9 ]+">
+                        
+                        <!-- Street town input -->
+                        <label for="ship-street-suburb">Suburb/Town</label>
+                        <input type="text" id="ship-street-suburb" name="ship-street-suburb" required maxlength="20" pattern="[a-zA-Z0-9 ]+">
+
+                        <!-- Field set for address state and postcode -->
+                        
+                            <!-- Combine state and postcode input into the same row -->
+                            <div class="combine-row">
+                                <div class="form-split">
+                                    <label for="ship-street-state">State</label>
+                                    <select id="ship-street-state" name="ship-street-state" required>
+                                        <option value="" selected>--- Please Select ---</option>
+                                        <option value="VIC">VIC</option>
+                                        <option value="NSW">NSW</option>
+                                        <option value="QLD">QLD</option>
+                                        <option value="NT">NT</option>
+                                        <option value="WA">WA</option>
+                                        <option value="SA">SA</option>
+                                        <option value="TAS">TAS</option>
+                                        <option value="ACT">ACT</option>
+                                    </select>
+                                </div>
+                                <div class="form-split" id="ship-post-container">
+                                    <label for="ship-street-post">Postcode</label>
+                                    <input type="text" id="ship-street-post" class="post-add" name="ship-street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
+                                    <span class="error-msg" hidden></span>
+                                </div>
+                            </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend class="block-legend">Billing Address</legend>
+                        <!-- Check box to use shipping address for billing address -->
+                        <div class="combine-rad">
+                            <input type="checkbox" id="use-ship-check">
+                            <label for="use-ship-check">Use shipping address</label>
+                        </div>
+                        
+
+                        <!-- Container to hide billing address when check box is ticked -->
+                        <div id="bill-address-container">
+                            <!-- Street address input -->
+                            <label for="bill-street-add">Street Address</label>
+                            <input type="text" id="bill-street-add" name="bill-street-add" required maxlength="40" pattern="[a-zA-Z0-9 ]+">
+                            
+                            <!-- Street town input -->
+                            <label for="bill-street-suburb">Suburb/Town</label>
+                            <input type="text" id="bill-street-suburb" name="bill-street-suburb" required maxlength="20" pattern="[a-zA-Z0-9 ]+">
+
+                            <!-- Combine state and postcode input into the same row -->
+                            <div class="combine-row">
+                                <div class="form-split">
+                                    <label for="bill-street-state">State</label>
+                                    <select id="bill-street-state" name="bill-street-state" required>
+                                        <option value="" selected>--- Please Select ---</option>
+                                        <option value="VIC">VIC</option>
+                                        <option value="NSW">NSW</option>
+                                        <option value="QLD">QLD</option>
+                                        <option value="NT">NT</option>
+                                        <option value="WA">WA</option>
+                                        <option value="SA">SA</option>
+                                        <option value="TAS">TAS</option>
+                                        <option value="ACT">ACT</option>
+                                    </select>
+                                </div>
+                                <div class="form-split">
+                                    <label for="bill-street-post">Postcode</label>
+                                    <input type="text" id="bill-street-post" name="bill-street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
+                                </div>
+                            
+                            </div>
+                        </div>
+                        
+                    </fieldset>
+                    
+                    
                 </fieldset>
 
                 <!-- Field set for product information -->
                 <fieldset>
-                    <legend class="block-legend">Product Information</legend>
+                    <legend class="block-legend">Product Selection</legend>
                     <!-- Tick box for product -->
-                    <label for="product">Enquiring Product</label>
+                    <div id="product-list">
+
+                    </div>
+                    <label for="product">Select a Product</label>
                     <select id="product" name="product" required>
                         <option value="" selected>--- Please Select ---</option>
                         <option value="light-bulbs">Smart Light Bulbs</option>
@@ -179,7 +233,7 @@
                     </select>
 
                     <!-- Field set for product features, similar to contact method radio -->
-                    <fieldset>
+                    <!-- <fieldset>
                         <legend class="inline-legend">Product Features</legend>
                         <div class="inline-beside-legend">
                             <div class="combine-rad">
@@ -197,7 +251,7 @@
                                 <label for="energy-efficient">Energy Efficient</label>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
 
                     <!-- Text area for comment -->
                     <label for="comment">Comment</label>
@@ -206,7 +260,7 @@
 
                 <!-- Div to group submit and reset button together -->
                 <div class="form-act">
-                    <input type="submit" value="Submit Enquiry">
+                    <input type="submit" value="Pay Now">
                     <input type="reset" value="Reset form">
                 </div>
                 

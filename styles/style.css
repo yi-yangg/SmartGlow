@@ -373,6 +373,15 @@ footer span {
     transition: border-color 0.4s;
 }
 
+.post-add {
+    margin-bottom: 0px !important;
+}
+
+.error-msg {
+    font-size: 0.8em;
+    color: red;
+}
+
 .enquire-form textarea {
     /* Allow textarea to be resized vertical only */
     resize: vertical;
@@ -398,7 +407,7 @@ footer span {
 }
 
 .combine-rad {
-    padding-bottom: 8px;
+    padding-bottom: 10px;
 }
 
 /* Change design of the submit and reset button */
@@ -441,6 +450,9 @@ footer span {
     color: black;
     border-color: black;
 }
+
+/* Add product button */
+
 
 /* About me hero */
 .about-hero {
