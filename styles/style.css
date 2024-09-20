@@ -373,7 +373,7 @@ footer span {
     transition: border-color 0.4s;
 }
 
-.post-add {
+.has-error-span {
     margin-bottom: 0px !important;
 }
 
@@ -450,8 +450,6 @@ footer span {
     color: black;
     border-color: black;
 }
-
-/* Add product button */
 
 
 /* About me hero */

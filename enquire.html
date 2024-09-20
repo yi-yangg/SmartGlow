@@ -81,7 +81,7 @@
             <p>Thank you for choosing us! Please fill out the form below to complete your purchase.</p>
             
             <!-- Form -->
-            <form action="payment.html" id="purchase-form">
+            <form action="payment.html" id="purchase-form" novalidate="novalidate">
                 <!-- Field set for personal information -->
                 <fieldset>
                     <legend class="block-legend">Personal Information</legend>
@@ -163,7 +163,7 @@
                                 </div>
                                 <div class="form-split" id="ship-post-container">
                                     <label for="ship-street-post">Postcode</label>
-                                    <input type="text" id="ship-street-post" class="post-add" name="ship-street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
+                                    <input type="text" id="ship-street-post" class="has-error-span" name="ship-street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
                                     <span class="error-msg" hidden></span>
                                 </div>
                             </div>
@@ -182,17 +182,17 @@
                         <div id="bill-address-container">
                             <!-- Street address input -->
                             <label for="bill-street-add">Street Address</label>
-                            <input type="text" id="bill-street-add" name="bill-street-add" required maxlength="40" pattern="[a-zA-Z0-9 ]+">
+                            <input type="text" id="bill-street-add" name="bill-street-add" maxlength="40" pattern="[a-zA-Z0-9 ]+">
                             
                             <!-- Street town input -->
                             <label for="bill-street-suburb">Suburb/Town</label>
-                            <input type="text" id="bill-street-suburb" name="bill-street-suburb" required maxlength="20" pattern="[a-zA-Z0-9 ]+">
+                            <input type="text" id="bill-street-suburb" name="bill-street-suburb" maxlength="20" pattern="[a-zA-Z0-9 ]+">
 
                             <!-- Combine state and postcode input into the same row -->
                             <div class="combine-row">
                                 <div class="form-split">
                                     <label for="bill-street-state">State</label>
-                                    <select id="bill-street-state" name="bill-street-state" required>
+                                    <select id="bill-street-state" name="bill-street-state">
                                         <option value="" selected>--- Please Select ---</option>
                                         <option value="VIC">VIC</option>
                                         <option value="NSW">NSW</option>
@@ -204,9 +204,10 @@
                                         <option value="ACT">ACT</option>
                                     </select>
                                 </div>
-                                <div class="form-split">
+                                <div class="form-split" id="bill-post-container">
                                     <label for="bill-street-post">Postcode</label>
-                                    <input type="text" id="bill-street-post" name="bill-street-post" required pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
+                                    <input type="text" id="bill-street-post" name="bill-street-post" class="has-error-span" pattern="\d{4}" placeholder="i.e. 3000" maxlength="4">
+                                    <span class="error-msg" hidden></span>
                                 </div>
                             
                             </div>
@@ -222,15 +223,19 @@
                     <legend class="block-legend">Product Selection</legend>
                     <!-- Tick box for product -->
                     <div id="product-list">
+                        <div class="product-item">
+                            <label for="product">Select a Product</label>
+                            <select id="product" name="product" required>
+                                <option value="" selected>--- Please Select ---</option>
+                                <option value="light-bulbs">Smart Light Bulbs</option>
+                                <option value="leds">Smart LEDs</option>
+                                <option value="light-strips">Smart Light Strips</option>
+                            </select>
+                        </div>
+
 
                     </div>
-                    <label for="product">Select a Product</label>
-                    <select id="product" name="product" required>
-                        <option value="" selected>--- Please Select ---</option>
-                        <option value="light-bulbs">Smart Light Bulbs</option>
-                        <option value="leds">Smart LEDs</option>
-                        <option value="light-strips">Smart Light Strips</option>
-                    </select>
+                    
 
                     <!-- Field set for product features, similar to contact method radio -->
                     <!-- <fieldset>

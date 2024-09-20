@@ -11,10 +11,11 @@
 
 function showErrorMessage(errorSpan, errorMsg, errorInput) {
     errorSpan.textContent = errorMsg;
-    errorSpan.removeAttribute("hidden");
+    errorSpan.hidden = false;
     errorInput.style.borderColor = "red";
 }
 
-function hideErrorMessage(errorSpan) {
-    
+function hideErrorMessage(errorSpan, errorInput) {
+    errorSpan.hidden = true;
+    errorInput.style.borderColor = "";
 }

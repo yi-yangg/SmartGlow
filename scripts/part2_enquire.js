@@ -11,10 +11,19 @@
 
 
 // Function to change visibility of Billing section
-function changeBillingVisibility() {
+function changeBillingVisibility(checkBox, billingPostContainer) {
     const billingContainer = document.getElementById("bill-address-container");
     // If checkbox checked then hide the container
-    this.checked ? billingContainer.setAttribute("hidden", "true") : billingContainer.removeAttribute("hidden");
+    if (checkBox.checked) {
+        billingContainer.hidden = true 
+        // Hide the error message if billing container hidden
+        hideErrorMessage(billingPostContainer.getElementsByTagName("span")[0], billingPostContainer.getElementsByTagName("input")[0]);
+    }
+    else {
+        billingContainer.hidden = false;
+        // Recheck postcode and state when unchecked
+        checkPostAndState(billingPostContainer, document.getElementById("bill-street-state"));
+    }
 }
 
 function checkPostAndState(postContainer, stateElem) {
@@ -27,45 +36,52 @@ function checkPostAndState(postContainer, stateElem) {
 
     // If both Postcode and State value are valid
     if (postcode && state) {
-        const firstDigit = postcode.charAt(0);
-        var isValid = false;
-
-        // Check postcode based on state selected
-        switch (state) {
-            case "VIC":
-                isValid = firstDigit === "3" || firstDigit === "8";
-                break;
-            case "NSW":
-                isValid = firstDigit === "1" || firstDigit === "2";
-                break;
-            case "QLD":
-                isValid = firstDigit === "4" || firstDigit === "9";
-                break;
-            case "NT":
-            case "ACT":
-                isValid = firstDigit === "0";
-                break;
-            case "WA":
-                isValid = firstDigit === "6";
-                break;
-            case "SA":
-                isValid = firstDigit === "5";
-                break;
-            case "TAS":
-                isValid = firstDigit === "7";
-                break;
-            default:
-                isValid = false;
+        // If postcode length is less than 4 then show error
+        if (postcode.length < 4) {
+            showErrorMessage(postErrorSpan, "Postcode must be 4 digits long.", postInput);
+            return;
+        }
+        // Get first digit of postcode
+        const firstDigit = postcode[0];
+        // Create a dictionary map for state to first digit post code
+        const stateToPostMapping = {
+            "VIC": ["3", "8"],
+            "NSW": ["1", "2"],
+            "QLD": ["4", "9"],
+            "NT": ["0"],
+            "WA": ["6"],
+            "SA": ["5"],
+            "TAS": ["7"],
+            "ACT": ["0"]
         }
 
-        if (!isValid) {
+        if (stateToPostMapping[state].includes(firstDigit)) {
+            hideErrorMessage(postErrorSpan, postInput);
+        }
+        else {
             showErrorMessage(postErrorSpan, "Postcode does not match the selected state.", postInput);
         }
     }
 }
 
 function checkInput() {
+    const getAllErrorSpan = document.getElementsByClassName("error-msg");
+    var hasError = false;
+    var firstErrorElem;
+    [...getAllErrorSpan].forEach((errorSpan) => {
+        // If has error then errorSpan.hidden = false
+        hasError ||= !errorSpan.hidden;
+        // If error and first error element is empty then scroll to the div container with ID
+        if (!errorSpan.hidden && !firstErrorElem) {
+            // Get parent div of error span and scroll to the div
+            document.getElementById(errorSpan.parentElement.id).scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+    
+    return !hasError;
 
+
+    
 }
 
 // Initialization function
@@ -74,16 +90,29 @@ function init() {
     const useShippingCheckBox = document.getElementById("use-ship-check");
     const purchaseForm = document.getElementById("purchase-form");
 
-    purchaseForm.onsubmit = checkInput;
-
+    // Shipping and bill elements
     const shipState = document.getElementById("ship-street-state");
     const shipPostContainer = document.getElementById("ship-post-container");
 
+    const billState = document.getElementById("bill-street-state");
+    const billPostContainer = document.getElementById("bill-post-container");
+
+    // Change billing visibility if checkbox is checked
+    checkPostAndState(shipPostContainer, shipState);
+    
+    changeBillingVisibility(useShippingCheckBox, billPostContainer);
+    // Shipping and billing events (Check postcode based on state)
     shipState.onchange = () => checkPostAndState(shipPostContainer, shipState);
+    shipPostContainer.getElementsByTagName("input")[0].onblur = () => checkPostAndState(shipPostContainer, shipState);
 
+    billState.onchange = () => checkPostAndState(billPostContainer, billState);
+    billPostContainer.getElementsByTagName("input")[0].onblur = () => checkPostAndState(billPostContainer, billState);
+    
+    // On submit event for purchase form
+    purchaseForm.onsubmit = checkInput;
 
-
-    useShippingCheckBox.onclick = changeBillingVisibility;
+    // On click event to display and hide billing address section
+    useShippingCheckBox.onclick = () => changeBillingVisibility(useShippingCheckBox, billPostContainer);
 }
 
 window.onload = init;
