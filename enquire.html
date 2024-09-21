@@ -223,45 +223,28 @@
                     <legend class="block-legend">Product Selection</legend>
                     <!-- Tick box for product -->
                     <div id="product-list">
-                        <div class="product-item">
-                            <label for="product">Select a Product</label>
-                            <select id="product" name="product" required>
-                                <option value="" selected>--- Please Select ---</option>
-                                <option value="light-bulbs">Smart Light Bulbs</option>
-                                <option value="leds">Smart LEDs</option>
-                                <option value="light-strips">Smart Light Strips</option>
-                            </select>
-                        </div>
-
+                        
 
                     </div>
                     
 
-                    <!-- Field set for product features, similar to contact method radio -->
-                    <!-- <fieldset>
-                        <legend class="inline-legend">Product Features</legend>
-                        <div class="inline-beside-legend">
-                            <div class="combine-rad">
-                                <input type="checkbox" id="remote-control" name="features[]" value="remote-control" checked>
-                                <label for="remote-control">Remote Control</label>
-                            </div>
-                            
-                            <div class="combine-rad">
-                                <input type="checkbox" id="color-change" name="features[]" value="color-change">
-                                <label for="color-change">Color Change</label>
-                            </div>
-
-                            <div class="combine-rad">
-                                <input type="checkbox" id="energy-efficient" name="features[]" value="energy-efficient">
-                                <label for="energy-efficient">Energy Efficient</label>
-                            </div>
-                        </div>
-                    </fieldset> -->
-
-                    <!-- Text area for comment -->
-                    <label for="comment">Comment</label>
-                    <textarea id="comment" name="comment" rows="5" cols="40" placeholder="Specify particular aspects you are interested in..."></textarea>
+                    <!-- Add button to add products -->
+                    <button type="button" id="new-product">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
+                            <path d="M 23.976562 4.9785156 A 1.50015 1.50015 0 0 0 22.5 6.5 L 22.5 22.5 L 6.5 22.5 A 1.50015 1.50015 0 1 0 6.5 25.5 L 22.5 25.5 L 22.5 41.5 A 1.50015 1.50015 0 1 0 25.5 41.5 L 25.5 25.5 L 41.5 25.5 A 1.50015 1.50015 0 1 0 41.5 22.5 L 25.5 22.5 L 25.5 6.5 A 1.50015 1.50015 0 0 0 23.976562 4.9785156 z"></path>
+                        </svg>
+                        <p>New Product</p>
+                    </button>
+                    <!-- Final price container -->
+                    <div class="final-price-container">
+                        <h4>Final Price</h4>
+                        <p>A$<span id="final-price">0.00</span></p>
+                    </div>
                 </fieldset>
+
+                <!-- Text area for comment -->
+                <label for="comment">Comment</label>
+                <textarea id="comment" name="comment" rows="5" cols="40" placeholder="Specify particular aspects you are interested in..."></textarea>
 
                 <!-- Div to group submit and reset button together -->
                 <div class="form-act">
