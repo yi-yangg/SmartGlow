@@ -17,6 +17,15 @@
     </head>
 
     <body>
+
+        <!-- Toast -->
+        <div class="toast hide" id="toast-container">
+            <div class="toast-body">
+                <span id="toast-span">Hello</span>
+            </div>
+            <span id="close">x</span>
+        </div>
+
         <!-- Header for navigations -->
         <header>
             <div class="shown-menu">
@@ -81,7 +90,7 @@
             <p>Thank you for choosing us! Please fill out the form below to complete your purchase.</p>
             
             <!-- Form -->
-            <form action="payment.html" id="purchase-form" novalidate="novalidate">
+            <form action="payment.html" id="purchase-form">
                 <!-- Field set for personal information -->
                 <fieldset>
                     <legend class="block-legend">Personal Information</legend>
@@ -110,7 +119,7 @@
                     <input type="text" id="phone-no" name="phone-no" maxlength="10" pattern="\d{10}" placeholder="i.e. 0123456789" required>
                     
                     <!-- Field set for contact method -->
-                    <fieldset>
+                    <fieldset id="contact-mtd">
                         <!-- Make radio buttons and legend to the same row -->
 
                         <legend class="inline-legend">Contact Method</legend>
@@ -181,18 +190,26 @@
                         <!-- Container to hide billing address when check box is ticked -->
                         <div id="bill-address-container">
                             <!-- Street address input -->
-                            <label for="bill-street-add">Street Address</label>
-                            <input type="text" id="bill-street-add" name="bill-street-add" maxlength="40" pattern="[a-zA-Z0-9 ]+">
+                            <div id="bill-street-container">
+                                <label for="bill-street-add">Street Address</label>
+                                <input type="text" id="bill-street-add" name="bill-street-add" class="has-error-span" maxlength="40" pattern="[a-zA-Z0-9 ]+">
+                                <span class="error-msg" hidden></span>
+                            </div>
+                            
                             
                             <!-- Street town input -->
-                            <label for="bill-street-suburb">Suburb/Town</label>
-                            <input type="text" id="bill-street-suburb" name="bill-street-suburb" maxlength="20" pattern="[a-zA-Z0-9 ]+">
+                            <div id="bill-suburb-container">
+                                <label for="bill-street-suburb">Suburb/Town</label>
+                                <input type="text" id="bill-street-suburb" name="bill-street-suburb" class="has-error-span" maxlength="20" pattern="[a-zA-Z0-9 ]+">
+                                <span class="error-msg" hidden></span>
+                            </div>
+                            
 
                             <!-- Combine state and postcode input into the same row -->
-                            <div class="combine-row">
+                            <div class="combine-row" id="bill-state-container">
                                 <div class="form-split">
                                     <label for="bill-street-state">State</label>
-                                    <select id="bill-street-state" name="bill-street-state">
+                                    <select id="bill-street-state" name="bill-street-state" class="has-error-span">
                                         <option value="" selected>--- Please Select ---</option>
                                         <option value="VIC">VIC</option>
                                         <option value="NSW">NSW</option>
@@ -203,6 +220,7 @@
                                         <option value="TAS">TAS</option>
                                         <option value="ACT">ACT</option>
                                     </select>
+                                    <span class="error-msg" hidden></span>
                                 </div>
                                 <div class="form-split" id="bill-post-container">
                                     <label for="bill-street-post">Postcode</label>
@@ -254,7 +272,6 @@
                 
             </form>
         </section>
-
         <!-- Footer with copyright -->
         <footer>
             <p>&copy; 2024, SmartGlow.<br><span>Created by Chong Yi Yang.</span><br><span>All rights reserved.</span></p>

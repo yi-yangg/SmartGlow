@@ -14,19 +14,44 @@
 var noOfProduct = 1;
 
 // Function to change visibility of Billing section
-function changeBillingVisibility(checkBox, billingPostContainer) {
+function changeBillingVisibility(checkBox, billingPostContainer, isInitialize) {
     const billingContainer = document.getElementById("bill-address-container");
     // If checkbox checked then hide the container
     if (checkBox.checked) {
         billingContainer.hidden = true 
         // Hide the error message if billing container hidden
-        hideErrorMessage(billingPostContainer.getElementsByTagName("span")[0], billingPostContainer.getElementsByTagName("input")[0]);
+        hideAllBillingErrors();
     }
     else {
         billingContainer.hidden = false;
         // Recheck postcode and state when unchecked
         checkPostAndState(billingPostContainer, document.getElementById("bill-street-state"));
+        if (!isInitialize)
+            checkBillingAddress();
     }
+}
+
+function hideAllBillingErrors() {
+    // Hide billing street error
+    const billStreet = document.getElementById("bill-street-add");
+    hideBillingError(billStreet);
+
+    // Hide billing suburb error
+    const billSuburb = document.getElementById("bill-street-suburb");
+    hideBillingError(billSuburb);
+
+    // Hide billing state error
+    const billState = document.getElementById("bill-street-state");
+    hideBillingError(billState);
+
+    const billPost = document.getElementById("bill-street-post");
+    hideBillingError(billPost);
+    
+}
+
+function hideBillingError(billingInput) {
+    const billError = billingInput.parentElement.querySelector(".error-msg");
+    hideErrorMessage(billError, billingInput);
 }
 
 function checkPostAndState(postContainer, stateElem) {
@@ -68,6 +93,11 @@ function checkPostAndState(postContainer, stateElem) {
 }
 
 function checkInput() {
+
+    checkProductSelection();
+
+    checkBillingAddress();
+
     const getAllErrorSpan = document.getElementsByClassName("error-msg");
 
     for (var i = 0; i < getAllErrorSpan.length; i++) {
@@ -75,10 +105,45 @@ function checkInput() {
         if (!errorSpan.hidden) {
             // Get parent div of error span and scroll to the div
             document.getElementById(errorSpan.parentElement.id).scrollIntoView({ behavior: "smooth" });
+            showToast("Please ensure the input meets the required format.");
             return false;
         }
-    }
+    } 
     
+}
+
+function checkBillingAddress() {
+    const isUseShippingChecked = document.getElementById("use-ship-check").checked;
+    // If billing not using shipping address then check if fields are valid
+    if (!isUseShippingChecked) {
+        // Street address validation
+        const billStreet = document.getElementById("bill-street-add");
+        checkBillingInput(billStreet);
+
+        // Suburb address validation
+        const billSuburb = document.getElementById("bill-street-suburb");
+        checkBillingInput(billSuburb);
+
+        const billState = document.getElementById("bill-street-state");
+        checkBillingInput(billState);
+    }
+}
+
+function checkBillingInput(billInput) {
+    const billError = billInput.parentElement.querySelector(".error-msg");
+    setBillingInputEvent(billInput, billError);
+    // If billing street value is empty
+    if (!billInput.value) {    
+        showErrorMessage(billError, "Billing street address cannot be empty", billInput);
+    }
+}
+
+function setBillingInputEvent(billInput, billError) {
+    billInput.oninput = () => {
+        if (billInput.value) {
+            hideErrorMessage(billError, billInput);
+        }
+    }
 }
 
 function createProductItem(productNo) {
@@ -99,7 +164,7 @@ function createProductItem(productNo) {
             </button>
         </div>
         
-        <select id="product-${productNo}" name="product-${productNo}" required>
+        <select id="product-${productNo}" name="product-${productNo}" class="has-error-span" required>
             <option value="" selected>--- Please Select ---</option>
             <option value="light-bulbs">Smart Light Bulbs</option>
             <option value="leds">Smart LEDs</option>
@@ -120,8 +185,7 @@ function createProductItem(productNo) {
 
 function removeProduct(productNo) {
     // Get the number of products in the list
-    const productList = document.getElementById("product-list");
-    const amtOfProducts = productList.getElementsByClassName("product-item");
+    const amtOfProducts = getAllProducts();
     // Product amount cannot be less than 1, don't allow remove if amount is 1
     if (amtOfProducts.length > 1) {
         // Get product item and remove
@@ -136,6 +200,10 @@ function removeProduct(productNo) {
             minusPrevPrice(priceSpan);
         }
         productItem.remove();
+    }
+
+    else {
+        showToast("You must have at least 1 product.");
     }
 
 
@@ -222,31 +290,34 @@ function updateProductOptions(productNo) {
     if (product === "light-bulbs") {
         // For light bulbs different sizes
         productOptionsContainer.innerHTML = `
-            <label class="prod-option-header">Size: <span id="chosen-option-${productNo}    "></span></label>
+            <label class="prod-option-header">Size:</label>
             <input type="hidden" id="option-${productNo}" name="option-${productNo}">
             <button type="button" class="option-btn" data-value="a19" data-price="17.99">A19</button>
             <button type="button" class="option-btn" data-value="br30" data-price="22.99">BR30</button>
             <button type="button" class="option-btn" data-value="gu10" data-price="19.99">GU10</button>
+            <span class="error-msg" hidden></span>    
         `
     }
     else if(product === "leds") {
         // Different lengths for LED
         productOptionsContainer.innerHTML = `
-            <label class="prod-option-header">Length: <span id="chosen-option-${productNo}"></span></label>
+            <label class="prod-option-header">Length:</label>
             <input type="hidden" id="option-${productNo}" name="option-${productNo}">
             <button type="button" class="option-btn" data-value="2m" data-price="19.99">2m</button>
             <button type="button" class="option-btn" data-value="5m" data-price="27.99">5m</button>
             <button type="button" class="option-btn" data-value="10m" data-price="42.99">10m</button>
+            <span class="error-msg" hidden></span> 
         `
     }
     else if(product === "light-strips") {
         // Different length options for light strips
         productOptionsContainer.innerHTML = `
-            <label class="prod-option-header">Length: <span id="chosen-option-${productNo}"></span></label>
+            <label class="prod-option-header">Length:</label>
             <input type="hidden" id="option-${productNo}" name="option-${productNo}">
             <button type="button" class="option-btn" data-value="1m" data-price="12.99">1m</button>
             <button type="button" class="option-btn" data-value="2m" data-price="21.99">2m</button>
             <button type="button" class="option-btn" data-value="5m" data-price="33.99">5m</button>
+            <span class="error-msg" hidden></span> 
         `
     }
     else {
@@ -260,7 +331,12 @@ function setOptionButtonEvents(productNo, optionsContainer) {
     const allButtons = optionsContainer.getElementsByTagName("button");
     for (var i = 0; i < allButtons.length; i++) {
         const currButton = allButtons[i];
-        currButton.onclick = () => showProductFooter(productNo, currButton, allButtons);
+        currButton.onclick = () => {
+            showProductFooter(productNo, currButton, allButtons);
+
+            const errorSpan = optionsContainer.querySelector(".error-msg");
+            hideErrorMessage(errorSpan, null);
+        }
     }
 }
 
@@ -336,7 +412,7 @@ function createProductFooter(productNo) {
     productFooter.classList.add("product-footer");
 
     productFooter.innerHTML = `
-        <div>
+        <div id="qty-container-${productNo}">
             <label for="quantity-${productNo}" class="prod-option-header">Quantity:</label>
             <div>
                 <button type="button" class="qty-btn" id="minus-qty-${productNo}">
@@ -418,6 +494,136 @@ function minusFinalPrice(price) {
     finalPriceSpan.textContent = (currentPrice - price).toFixed(2);
 }
 
+function checkProductSelection() {
+    const productItems = getAllProducts();
+    for(var i = 0; i < productItems.length; i++) {
+        const item = productItems[i];
+        const itemNumber = item.id.split("-")[2];
+        // Check if product option is selected
+        const productOptions = document.getElementById("product-options-" + itemNumber);
+        const hiddenInputOptions = productOptions.querySelector("#option-" + itemNumber);
+        if (!hiddenInputOptions) {
+            return false;
+        }
+        const errorSpan = productOptions.querySelector(".error-msg");
+        if (!hiddenInputOptions.value) {
+            showErrorMessage(errorSpan, "Please select an option.", null);
+            return false;
+        }
+
+        const productFooter = item.querySelector(".product-footer");
+        if (!productFooter) {
+            return false;
+        }
+
+        const qtyError = productFooter.querySelector(".error-msg");
+        if (!qtyError.hidden) {
+            return false;
+        }
+
+    }
+
+    return true;
+}
+
+function createNewProduct() {
+    // If previous product 
+    if (checkProductSelection())
+        createProductItem(noOfProduct++);
+
+    else {
+        showToast("Please complete or fix the error on your previous product before adding.");
+    }
+}
+// Global toast timeout variable
+var toastTimeout;
+function showToast(content) {
+    // Get toast container
+    const toast = document.getElementById("toast-container");
+    // If toast already shown the dont show again
+    if (toast.classList.contains("show"))
+        closeToast();
+    
+    const toastSpan = document.getElementById("toast-span");
+    toastSpan.textContent = content;
+    toast.classList.add("show");
+    toast.classList.remove("hide")
+
+    // Set timeout to hide after 2 seconds
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hide");
+    }, 2000);
+    
+}
+
+function closeToast() {
+    // If timeout variable exists then clear timeout
+    if (toastTimeout) {
+        clearTimeout(toastTimeout);
+    }
+
+    // Hide the toast
+    const toast = document.getElementById("toast-container");
+    toast.classList.remove("show");
+    toast.classList.add("hide");
+}
+
+function getContactMethod() {
+    const contactMethodRadios = document.getElementById("contact-mtd").getElementsByTagName("input");
+    for (var i = 0; i < contactMethodRadios.length; i++) {
+        if (contactMethodRadios[i].checked) {
+            return contactMethodRadios[i];
+        }
+    }
+}
+
+function storeValues() {
+    // Store customer personal information
+    sessionStorage.firstName = document.getElementById("first-name").value;
+    sessionStorage.lastName = document.getElementById("last-name").value;
+    sessionStorage.emailAddress = document.getElementById("email").value;
+    sessionStorage.phoneNo = document.getElementById("phone-no").value;
+    sessionStorage.contactMethod = getContactMethod();
+
+    // Store address (Shipping and billing)
+    sessionStorage.shipStreet = document.getElementById("ship-street-add").value;
+    sessionStorage.shipSuburb = document.getElementById("ship-street-suburb").value;
+    sessionStorage.shipState = document.getElementById("ship-street-state").value;
+    sessionStorage.shipPost = document.getElementById("ship-street-post").value;
+
+    sessionStorage.isUseShipChecked = document.getElementById("use-ship-check").checked;
+    // If the use shipping is checked for billing address then store billing address
+    if (sessionStorage.isUseShipChecked == "true") {
+        sessionStorage.billStreet = document.getElementById("bill-street-add").value;
+        sessionStorage.billSuburb = document.getElementById("ship-street-suburb").value;
+        sessionStorage.billState = document.getElementById("ship-street-state").value;
+        sessionStorage.billPost = document.getElementById("ship-street-post").value;
+    }
+
+    // Store all products
+
+
+    // Store final price
+
+}
+
+function resetProducts() {
+    const allProducts = getAllProducts();
+    [...allProducts].forEach(removeProductElems);
+    
+}
+
+function removeProductElems(product) {
+    
+    
+}
+
+function getAllProducts() {
+    const productList = document.getElementById("product-list");
+    return productList.getElementsByClassName("product-item");
+}
+
 // Initialization function
 function init() {
     // Initialize HTML elements
@@ -433,30 +639,34 @@ function init() {
 
     // newProductButton
     const newProductBtn = document.getElementById("new-product");
+    
+    const toastClose = document.getElementById("close");
 
     // Change billing visibility if checkbox is checked
     checkPostAndState(shipPostContainer, shipState);
     
-    changeBillingVisibility(useShippingCheckBox, billPostContainer);
+    changeBillingVisibility(useShippingCheckBox, billPostContainer, true);
     // Shipping and billing events (Check postcode based on state)
     shipState.onchange = () => checkPostAndState(shipPostContainer, shipState);
-    shipPostContainer.getElementsByTagName("input")[0].onblur = () => checkPostAndState(shipPostContainer, shipState);
+    shipPostContainer.getElementsByTagName("input")[0].oninput = () => checkPostAndState(shipPostContainer, shipState);
 
     billState.onchange = () => checkPostAndState(billPostContainer, billState);
-    billPostContainer.getElementsByTagName("input")[0].onblur = () => checkPostAndState(billPostContainer, billState);
+    billPostContainer.getElementsByTagName("input")[0].oninput = () => checkPostAndState(billPostContainer, billState);
     
     // On submit event for purchase form
     purchaseForm.onsubmit = checkInput;
-
+    purchaseForm.onreset = resetProducts;
     // On click event to display and hide billing address section
-    useShippingCheckBox.onclick = () => changeBillingVisibility(useShippingCheckBox, billPostContainer);
+    useShippingCheckBox.onclick = () => changeBillingVisibility(useShippingCheckBox, billPostContainer, false);
 
     // Set default 1 product on product list
     createProductItem(noOfProduct++);
 
     // On click event for new product button
-    newProductBtn.onclick = () => createProductItem(noOfProduct++);
+    newProductBtn.onclick = () => createNewProduct();
 
+    // On click event for close toast
+    toastClose.onclick = closeToast;
 }
 
 window.onload = init;

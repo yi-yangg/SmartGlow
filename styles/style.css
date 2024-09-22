@@ -378,6 +378,7 @@ footer span {
 }
 
 .error-msg {
+    display: block;
     font-size: 0.8em;
     color: red;
 }
@@ -559,6 +560,44 @@ svg {
 
 #new-product p {
     margin-bottom: 0;
+}
+
+/* Toast */
+.toast {
+    max-width: 400px;
+    min-width: 200px;
+    /* Move toast container 50% to left */
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9); 
+    border: 1px solid grey;
+    color: red;
+    border-radius: 0.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em;
+    font-size: 0.9em;
+    position: sticky;
+    top: 10px;
+    left: 50%;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1; 
+}
+
+.toast.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+#close {
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding-left: 5px;
 }
 
 /* About me hero */
