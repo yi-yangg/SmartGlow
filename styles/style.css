@@ -232,7 +232,8 @@ header .shown-menu {
 }
 
 
-#enqbtn {
+#enqbtn,
+#pay-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -324,7 +325,7 @@ footer span {
     margin-top: 0px;
 }
 
-.enquire-form fieldset {
+fieldset {
     /* Remove border from fieldset */
     border: 0;
 }
@@ -358,7 +359,7 @@ footer span {
 }
 
 /* Decorate input fields for text, email, select and textarea */
-.enquire-form input[type="text"],
+input[type="text"],
 .enquire-form input[type="email"],
 .enquire-form select,
 .enquire-form textarea {
@@ -389,7 +390,7 @@ footer span {
 }
 
 /* When input is on focus change border color and disable outline */
-.enquire-form input[type="text"]:focus,
+input[type="text"]:focus,
 .enquire-form input[type="email"]:focus,
 .enquire-form select:focus,
 .enquire-form textarea:focus {
@@ -412,8 +413,9 @@ footer span {
 }
 
 /* Change design of the submit and reset button */
-.enquire-form input[type="submit"],
-.enquire-form input[type="reset"] {
+.form-act input[type="submit"],
+.form-act input[type="reset"],
+.form-act #cancelBtn {
     padding: 10px 20px;
     font-size: 0.9em;
     margin: 6px 12px;
@@ -558,8 +560,8 @@ svg {
     border: 1px solid #19cb63;
 }
 
-#new-product p {
-    margin-bottom: 0;
+#new-product span {
+    font-size: 1.1em;
 }
 
 /* Toast */
@@ -577,7 +579,7 @@ svg {
     align-items: center;
     padding: 0.8em;
     font-size: 0.9em;
-    position: sticky;
+    position: fixed;
     top: 10px;
     left: 50%;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -875,22 +877,180 @@ svg {
 
 }
 
-/* Media for different widths */
-@media (max-width: 768px) {
-    /* Change heading and paragraph sizes */
-    h1 {
-        font-size: 2em;
-    }
-    h2 {
-        font-size: 1.5em;
-    }
-    h3 {
-        font-size: 1.2em;
-    }
-    .hero-content p {
-        font-size: 1em;
-        margin: 16px 0;
-    }
+
+#payment-heading {
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* Customer info section in payment page */
+#customer-info-container {
+    background-color: white;
+    padding: 2em;
+    max-width: 50%;
+    margin: 2em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 1.5em;
+}
+
+#customer-info-container h2 {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.info-group {
+    margin-bottom: 20px;
+}
+
+.info-group h4 {
+    color: #666666;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.info-group p {
+    font-size: 16px;
+    color: #444444;
+    margin: 5px 0;
+}
+
+.info-group p strong {
+    color: #333333;
+}
+
+.info-group span {
+    color: #777777;
+}
+
+/* Product item */
+.product-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+
+/* On hover effect on product item */
+.product-item:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-details h5 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.product-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.product-price span {
+    font-weight: bold;
+    color: black;
+    font-size: 1.1em;
+}
+
+/* Payment form container floating right */
+#payment-form-container {
+    float: right;
+    width: 35%;
+    background-color: white;
+    padding: 1.5em;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+#payment-form-container h3 {
+    margin: 0.5em 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+#payment-form label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.form-act input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+#cancelBtn {
+    background-color: #ff3f1e;
+    color: white;
+    border: 1px solid #ff3f1e;
+}
+
+.form-act input[type="submit"]:hover {
+    color: #007bff;
+    background-color: white;
+}
+
+#cancelBtn:hover {
+    background-color: white;
+    color: #ff3f1e;
+}
+
+#card-type-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+#card-type-options input[type="radio"],
+#card-type-options label {
+    cursor: pointer;
+}
+
+
+#timer-banner {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5em;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.timer-text {
+    font-size: 18px;
+}
+
+#pay-btn {
+    font-size: 0.85em;
+    background-color: white;
+    margin-left: 1em;
+}
+
+#pay-btn:hover {
+    background-color: black;
+    color: white;
+    fill: white;
+}
+
+@media (max-width: 1000px) {
     /* Show the hidden nav bar when width changes */
     .hidden-menu {
         display: block;
@@ -914,6 +1074,77 @@ svg {
     #logo {
         width: 100%;
         height: auto;
+    }
+}
+
+/* Change the product range page */
+@media (max-width: 950px) {
+    /* Remove float on aside bar */
+    .side-nav {
+        float: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        top: 0;
+    }
+
+    /* Hide Navigation title on aside bar */
+    .side-nav h3 {
+        display: none;
+    }
+
+    .side-nav ol {
+        /* Make the navigation items flex horizontally */
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .side-nav ol li {
+        /* Remove list style */
+        list-style: none;
+        display: block;
+        text-align: center;
+        padding: 1em;
+    }
+
+    /* Remove subsection */
+    .side-nav ul {
+        display: none;
+    }
+
+    .product-section {
+        /* Increase product section width */
+        width: auto;
+    }
+
+    #payment-form-container {
+        float: none;
+        width: auto;
+        margin: 1.5em;
+    }
+
+    #customer-info-container {
+        max-width: 100%;
+    }
+}
+
+
+/* Media for different widths */
+@media (max-width: 768px) {
+    /* Change heading and paragraph sizes */
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    h3 {
+        font-size: 1.2em;
+    }
+    .hero-content p {
+        font-size: 1em;
+        margin: 16px 0;
     }
     
     .explore {
@@ -1000,47 +1231,14 @@ svg {
         padding: 0.5em;
     }
 
-}
-
-/* Change the product range page */
-@media (max-width: 950px) {
-    /* Remove float on aside bar */
-    .side-nav {
-        float: none;
-        width: 100%;
+    #payment-form-container {
         margin: 0;
-        padding: 0;
-        top: 0;
+        margin-top: 1.5em;
     }
 
-    /* Hide Navigation title on aside bar */
-    .side-nav h3 {
-        display: none;
-    }
-
-    .side-nav ol {
-        /* Make the navigation items flex horizontally */
-        display: flex;
-        justify-content: space-around;
+    #customer-info-container {
+        margin: 1.5em 0;
+        border-radius: 0;
 
     }
-
-    .side-nav ol li {
-        /* Remove list style */
-        list-style: none;
-        display: block;
-        text-align: center;
-        padding: 1em;
-    }
-
-    /* Remove subsection */
-    .side-nav ul {
-        display: none;
-    }
-
-    .product-section {
-        /* Increase product section width */
-        width: auto;
-    }
-
 }

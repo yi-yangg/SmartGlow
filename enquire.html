@@ -13,6 +13,7 @@
         <!-- Link for CSS style sheet -->
         <link rel="stylesheet" href="styles/style.css">
         <script src="scripts/part2.js"></script>
+        <script src="scripts/enhancements.js"></script>
         <script src="scripts/part2_enquire.js"></script>
     </head>
 
@@ -36,7 +37,7 @@
                         <li><a class="links" href="enquire.html">Enquire</a></li>
                         <li><a class="links" href="about.html">About</a></li>
                         <li><a class="links" href="enhancements.html">Enhancements</a></li>
-                        
+                        <li><a class="links" href="enhancements2.html">Enhancements 2</a></li>
                     </ul>
                 </nav>
                 
@@ -48,9 +49,21 @@
                     <li><a class="hidden-links" href="enquire.html">Enquire</a></li>
                     <li><a class="hidden-links" href="about.html">About</a></li>
                     <li><a class="hidden-links" href="enhancements.html">Enhancements</a></li>
+                    <li><a class="hidden-links" href="enhancements2.html">Enhancements 2</a></li>
                 </ul>
             </nav>
         </header>
+        <!-- Timer banner -->
+        <div id="timer-banner" hidden>
+            <span id="timer" class="timer-text"></span>
+            <a id="pay-btn" href="payment.html">
+                <p>Pay Now</p>
+                <!-- SVG for arrow -->
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
+                    <path d="M4,26h35.172l-6.586,6.586c-0.781,0.781-0.781,2.047,0,2.828C32.977,35.805,33.488,36,34,36s1.023-0.195,1.414-0.586l10-10 C45.789,25.04,46,24.531,46,24s-0.211-1.039-0.586-1.414l-10-10c-0.781-0.781-2.047-0.781-2.828,0 c-0.781,0.781-0.781,2.047,0,2.828L39.172,22H4c-1.104,0-2,0.896-2,2S2.896,26,4,26z"></path>
+                </svg>
+            </a>
+        </div>
 
         <!-- Hero for enquire page -->
         <section class="hero-enquire">
@@ -239,10 +252,9 @@
                 <!-- Field set for product information -->
                 <fieldset>
                     <legend class="block-legend">Product Selection</legend>
-                    <!-- Tick box for product -->
+                    <!-- List of products -->
                     <div id="product-list">
                         
-
                     </div>
                     
 
@@ -251,7 +263,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
                             <path d="M 23.976562 4.9785156 A 1.50015 1.50015 0 0 0 22.5 6.5 L 22.5 22.5 L 6.5 22.5 A 1.50015 1.50015 0 1 0 6.5 25.5 L 22.5 25.5 L 22.5 41.5 A 1.50015 1.50015 0 1 0 25.5 41.5 L 25.5 25.5 L 41.5 25.5 A 1.50015 1.50015 0 1 0 41.5 22.5 L 25.5 22.5 L 25.5 6.5 A 1.50015 1.50015 0 0 0 23.976562 4.9785156 z"></path>
                         </svg>
-                        <p>New Product</p>
+                        <span>New Product</span>
                     </button>
                     <!-- Final price container -->
                     <div class="final-price-container">
@@ -261,7 +273,7 @@
                 </fieldset>
 
                 <!-- Text area for comment -->
-                <label for="comment">Comment</label>
+                <label for="comment">Additional Comments</label>
                 <textarea id="comment" name="comment" rows="5" cols="40" placeholder="Specify particular aspects you are interested in..."></textarea>
 
                 <!-- Div to group submit and reset button together -->
